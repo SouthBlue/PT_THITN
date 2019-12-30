@@ -159,7 +159,7 @@ namespace THITRACNGHIEM
                 return;
             }
             string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTMALOP '" + txtMaLop.Text + "'" +
+                            "EXEC @result = SP_KTMALOP '" + txtMaLop.Text + "', N'" +txtTenLop.Text +"' "+
                             " SELECT 'result' = @result";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
@@ -171,6 +171,12 @@ namespace THITRACNGHIEM
             {
                 MessageBox.Show("Mã lớp đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaLop.Focus();
+                return;
+            }
+            if (result == 2 && (bdsLop.Position != positionMALOP))
+            {
+                MessageBox.Show("Tên lớp đã tồn tại!", "", MessageBoxButtons.OK);
+                txtTenLop.Focus();
                 return;
             }
             try

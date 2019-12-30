@@ -137,7 +137,7 @@ namespace THITRACNGHIEM
                 return;
             }
             string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTMAMH '" + txtMaMH.Text + "'"+
+                            "EXEC @result = SP_KTMAMH '" + txtMaMH.Text + "', N'" + txtTenMH.Text +"' "+
                             " SELECT 'result' = @result";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
@@ -152,7 +152,14 @@ namespace THITRACNGHIEM
                 
                 return;
             }
-            
+            if (result == 2 && (bdsMH.Position != positionMAMH))
+            {
+                MessageBox.Show("Tên môn học đã tồn tại!", "", MessageBoxButtons.OK);
+                txtMaMH.Focus();
+
+                return;
+            }
+
             try
             {
                 bdsMH.EndEdit();

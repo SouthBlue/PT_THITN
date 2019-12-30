@@ -162,7 +162,7 @@ namespace THITRACNGHIEM
                 return;
             }
             string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTMAKHOA '" + txtMaKhoa.Text + "'" +
+                            "EXEC @result = SP_KTMAKHOA '" + txtMaKhoa.Text + "', N'" + txtTenKhoa.Text +"' "+
                             " SELECT 'result' = @result";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
@@ -174,7 +174,14 @@ namespace THITRACNGHIEM
             {
                 MessageBox.Show("Mã khoa đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaKhoa.Focus();
-                Program.myReader.Close();
+
+                return;
+            }
+            if (result == 2 && (bdsKhoa.Position != positionMAKH))
+            {
+                MessageBox.Show("Tên khoa đã tồn tại!", "", MessageBoxButtons.OK);
+                txtTenKhoa.Focus();
+
                 return;
             }
             try
