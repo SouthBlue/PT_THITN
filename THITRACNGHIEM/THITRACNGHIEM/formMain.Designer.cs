@@ -66,6 +66,8 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCoSo = new System.Windows.Forms.ComboBox();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnChuanBi = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -93,10 +95,11 @@
             this.btnKhoa,
             this.btnSV,
             this.barEditItem1,
-            this.btnBode});
+            this.btnBode,
+            this.btnChuanBi});
             this.btnMonHoc.Location = new System.Drawing.Point(0, 0);
             this.btnMonHoc.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMonHoc.MaxItemId = 24;
+            this.btnMonHoc.MaxItemId = 25;
             this.btnMonHoc.Name = "btnMonHoc";
             this.btnMonHoc.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -229,7 +232,8 @@
             this.ribbonPageGroup2,
             this.ribbonPageGroup7,
             this.ribbonPageGroup4,
-            this.ribbonPageGroup9});
+            this.ribbonPageGroup9,
+            this.ribbonPageGroup8});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "QUẢN LÝ";
             // 
@@ -370,6 +374,20 @@
             this.cmbCoSo.TabIndex = 0;
             this.cmbCoSo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnChuanBi);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            // 
+            // btnChuanBi
+            // 
+            this.btnChuanBi.Caption = "CHUẨN BỊ THI";
+            this.btnChuanBi.Id = 24;
+            this.btnChuanBi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnChuanBi.LargeWidth = 100;
+            this.btnChuanBi.Name = "btnChuanBi";
+            this.btnChuanBi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuanBi_ItemClick);
+            // 
             // formMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -442,6 +460,8 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCoSo;
+        private DevExpress.XtraBars.BarButtonItem btnChuanBi;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
     }
 }
 

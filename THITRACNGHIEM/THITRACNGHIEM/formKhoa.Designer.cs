@@ -347,11 +347,13 @@
             this.grbKhoa.Controls.Add(mAKHLabel);
             this.grbKhoa.Controls.Add(this.txtMaKhoa);
             this.grbKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbKhoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbKhoa.Location = new System.Drawing.Point(607, 2);
             this.grbKhoa.Name = "grbKhoa";
             this.grbKhoa.Size = new System.Drawing.Size(591, 245);
             this.grbKhoa.TabIndex = 14;
             this.grbKhoa.TabStop = false;
+            this.grbKhoa.Text = "Thông tin khoa";
             // 
             // txtMaCS
             // 
@@ -409,6 +411,7 @@
             this.colTENKH,
             this.colMACS});
             this.gvKhoa.GridControl = this.gcKhoa;
+            this.gvKhoa.GroupPanelText = "DANH SÁCH KHOA";
             this.gvKhoa.Name = "gvKhoa";
             // 
             // colMAKH
@@ -500,6 +503,7 @@
             this.colDIACHI,
             this.colMAKH1});
             this.gvGiaoVien.GridControl = this.gcGiaoVien;
+            this.gvGiaoVien.GroupPanelText = "DANH SÁCH GIÁO VIÊN CỦA KHOA";
             this.gvGiaoVien.Name = "gvGiaoVien";
             // 
             // colMAGV

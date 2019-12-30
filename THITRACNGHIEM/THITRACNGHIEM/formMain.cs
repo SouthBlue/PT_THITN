@@ -184,6 +184,16 @@ namespace THITRACNGHIEM
             Program.formChinh.Close();
         }
 
-        
+        private void btnChuanBi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(formChuanBiThi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                formChuanBiThi m = new formChuanBiThi();
+                m.MdiParent = this;
+                m.Show();
+            }
+        }
     }
 }

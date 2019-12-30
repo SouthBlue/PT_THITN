@@ -335,6 +335,7 @@
             this.grbMH.Size = new System.Drawing.Size(1370, 343);
             this.grbMH.TabIndex = 17;
             this.grbMH.TabStop = false;
+            this.grbMH.Text = "Thông tin môn học";
             // 
             // txtTenMH
             // 

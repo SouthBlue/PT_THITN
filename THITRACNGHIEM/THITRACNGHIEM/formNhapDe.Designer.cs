@@ -403,6 +403,7 @@
             this.colDAP_AN,
             this.colMAGV});
             this.gvBODE.GridControl = this.gcBODE;
+            this.gvBODE.GroupPanelText = "DANH SÁCH CÂU HỎI";
             this.gvBODE.Name = "gvBODE";
             // 
             // colCAUHOI

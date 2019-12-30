@@ -353,7 +353,7 @@
             this.grbLop.Controls.Add(mALOPLabel);
             this.grbLop.Controls.Add(this.txtMaLop);
             this.grbLop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbLop.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbLop.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbLop.Location = new System.Drawing.Point(673, 2);
             this.grbLop.Name = "grbLop";
             this.grbLop.Size = new System.Drawing.Size(542, 199);
@@ -512,7 +512,7 @@
             this.colDIACHI,
             this.colMALOP1});
             this.gvSinhVien.GridControl = this.gcSinhVien;
-            this.gvSinhVien.GroupPanelText = "DANH SÁCH SINH VIÊN";
+            this.gvSinhVien.GroupPanelText = "DANH SÁCH SINH VIÊN CỦA LỚP";
             this.gvSinhVien.Name = "gvSinhVien";
             // 
             // colMASV
