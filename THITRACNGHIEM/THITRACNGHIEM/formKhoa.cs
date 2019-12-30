@@ -12,7 +12,8 @@ namespace THITRACNGHIEM
 {
     public partial class formKhoa : Form
     {
-        public int vitri;
+        public int vitriKH;
+        public int vitriGV;
         public string macs = "";
         public formKhoa()
         {
@@ -30,6 +31,7 @@ namespace THITRACNGHIEM
         private void formKhoa_Load(object sender, EventArgs e)
         {
             
+
             DS.EnforceConstraints = false;
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.DS.KHOA);
@@ -39,20 +41,52 @@ namespace THITRACNGHIEM
 
             this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
             this.lOPTableAdapter.Fill(this.DS.LOP);
+
+            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
+
+            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+            this.bODETableAdapter.Fill(this.DS.BODE);
+
+
             macs = ((DataRowView)bdsKhoa[0])["MACS"].ToString();
-            /* cmbCoSo.DataSource = Program.bds_dspm;
-             cmbCoSo.DisplayMember = "TenCS";
-             cmbCoSo.ValueMember = "TenServer";
-             cmbCoSo.SelectedIndex = Program.mCoSo;
-             if (Program.mGroup == "TRUONG") cmbCoSo.Enabled = true;
-             else cmbCoSo.Enabled = false;*/
-            btnGhi.Enabled = btnUndo.Enabled = false;
-            grbKhoa.Enabled = false;
+            if (Program.mGroup == "TRUONG")
+            {
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
+                btnReload.Enabled = true;
+                grbKhoa.Enabled = false;
+                contextMenuStrip1.Enabled = false;
+            }
+            else
+            {
+                btnGhi.Enabled = btnUndo.Enabled = false;
+                grbKhoa.Enabled = false;
+            }
+            
         }
+        public void load()
+        {
+            DS.EnforceConstraints = false;
+            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+            this.kHOATableAdapter.Fill(this.DS.KHOA);
+
+            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
+
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.lOPTableAdapter.Fill(this.DS.LOP);
+
+            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
+
+            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+            this.bODETableAdapter.Fill(this.DS.BODE);
+        }
+        
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsKhoa.Position;
+            vitriKH = bdsKhoa.Position;
             grbKhoa.Enabled = true;
             bdsKhoa.AddNew();
             txtMaCS.Text = macs;
@@ -91,7 +125,7 @@ namespace THITRACNGHIEM
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsKhoa.Position;
+            vitriKH = bdsKhoa.Position;
             grbKhoa.Enabled = true;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -106,7 +140,7 @@ namespace THITRACNGHIEM
                 this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
                 this.kHOATableAdapter.Fill(this.DS.KHOA);
             }
-            bdsKhoa.Position = vitri;
+            bdsKhoa.Position = vitriKH;
             gcKhoa.Enabled = true;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = gcKhoa.Enabled = btnReload.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
@@ -135,7 +169,8 @@ namespace THITRACNGHIEM
             Program.myReader.Read();
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
-            if (result == 1)
+            int positionMAKH = bdsKhoa.Find("MAKH", txtMaKhoa.Text);
+            if (result == 1 && (bdsKhoa.Position != positionMAKH))
             {
                 MessageBox.Show("Mã khoa đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaKhoa.Focus();
@@ -146,7 +181,7 @@ namespace THITRACNGHIEM
             {
                 bdsKhoa.EndEdit();
                 bdsKhoa.ResetCurrentItem();
-                bdsKhoa.Position = vitri;
+                bdsKhoa.Position = vitriKH;
                 this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
                 this.kHOATableAdapter.Update(this.DS.KHOA);
 
@@ -188,5 +223,121 @@ namespace THITRACNGHIEM
             else
                 Close();
         }
+
+
+        /*-------------------GIÁO VIÊN-------------------*/
+
+
+        public string maGV, hoGV, tenGV, diaChiGV;
+        public void getValue(string ma, string ho, string ten, string diaChi)
+        {
+            maGV = ma;
+            hoGV = ho;
+            tenGV = ten;
+            diaChiGV = diaChi;
+        }
+        private void btnThemGV_Click(object sender, EventArgs e)
+        {
+            vitriKH = bdsKhoa.Position;
+            vitriGV = bdsGV.Position;
+            bdsGV.AddNew();
+            formGiaoVien frm = new formGiaoVien();
+            frm.maKH = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
+            frm.mydata = new formGiaoVien.GETDATA(getValue);
+            frm.ShowDialog();
+
+            if (frm.flagAdd)
+            {
+                ghiGV();
+            }
+            else
+            {
+
+                bdsGV.CancelEdit();
+                bdsGV.Position = vitriGV;
+
+            }
+        }
+
+        private void btnXoaGV_Click(object sender, EventArgs e)
+        {
+            if (bdsGVDK.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa giáo viên đã đăng ký thi!", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (bdsBODE.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa giáo viên đã lập bộ đề!", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có thực sự muốn xóa giáo viên này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    bdsGV.RemoveCurrent();
+                    this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.gIAOVIENTableAdapter.Update(this.DS.GIAOVIEN);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa giáo viên!\n" + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+        }
+
+        
+
+
+        private void btnSuaGV_Click(object sender, EventArgs e)
+        {
+            vitriKH = bdsKhoa.Position;
+            vitriGV = bdsGV.Position;
+            formGiaoVien frm = new formGiaoVien();
+            frm.magv = ((DataRowView)bdsGV[bdsGV.Position])["MAGV"].ToString();
+            frm.hogv = ((DataRowView)bdsGV[bdsGV.Position])["HO"].ToString();
+            frm.tengv = ((DataRowView)bdsGV[bdsGV.Position])["TEN"].ToString();
+            frm.diachigv = ((DataRowView)bdsGV[bdsGV.Position])["DIACHI"].ToString();
+            frm.maKH = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
+            frm.mydata = new formGiaoVien.GETDATA(getValue);
+            frm.ShowDialog();
+            if (frm.flagAdd)
+            {
+                ghiGV();
+            }
+            else
+            {
+                bdsGV.Position = vitriGV;
+                bdsGV.CancelEdit();
+            }
+        }
+        private void ghiGV()
+        {
+
+            try
+            {
+                ((DataRowView)bdsGV[bdsGV.Position])["MAGV"] = maGV;
+                ((DataRowView)bdsGV[bdsGV.Position])["HO"] = hoGV;
+                ((DataRowView)bdsGV[bdsGV.Position])["TEN"] = tenGV;
+                ((DataRowView)bdsGV[bdsGV.Position])["DIACHI"] = diaChiGV;
+                ((DataRowView)bdsGV[bdsGV.Position])["MAKH"] = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
+                bdsGV.EndEdit();
+                bdsGV.ResetCurrentItem();
+                bdsKhoa.Position = vitriKH;
+                bdsGV.Position = vitriGV;
+                this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIENTableAdapter.Update(this.DS.GIAOVIEN);
+
+                MessageBox.Show("Ghi giáo viên thành công!", "", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thêm giáo viên!\n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
     }
 }

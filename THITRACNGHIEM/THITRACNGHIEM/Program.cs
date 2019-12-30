@@ -35,6 +35,13 @@ namespace THITRACNGHIEM
 
         public static BindingSource bds_dspm = new BindingSource();
         public static formMain formChinh;
+        public static formDangNhap formDangNhap;
+        public static formKhoa formKhoa;
+        public static formLop formLop;
+        public static formNhapDe formNhapDe;
+        
+
+             
 
         public static int KetNoi()
         {
@@ -117,8 +124,8 @@ namespace THITRACNGHIEM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            formChinh = new formMain();
-            Application.Run(formChinh);
+            formDangNhap = new formDangNhap();
+            Application.Run(formDangNhap);
         }
     }
 

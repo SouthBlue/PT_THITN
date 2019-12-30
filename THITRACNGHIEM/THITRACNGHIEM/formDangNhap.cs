@@ -33,11 +33,13 @@ namespace THITRACNGHIEM
             cmbCS.DisplayMember = "TENCS";
             cmbCS.ValueMember = "TENSERVER";
             cmbCS.SelectedIndex = -1;
+            cmbCS.SelectedIndex = 0;
 
         }
 
         private void cmbCS_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             try
             {
                 Program.servername = cmbCS.SelectedValue.ToString();
@@ -77,19 +79,13 @@ namespace THITRACNGHIEM
             Program.mGroup = Program.myReader.GetString(2);
             Program.myReader.Close();
             Program.conn.Close();
-            if (Program.mGroup.CompareTo("SINHVIEN") == 0)
-            {
-                Program.formChinh.MA.Text = "Mã: " + Program.mlogin;
-                Program.formChinh.HOTEN.Text = "Họ và Tên: " + Program.mHoten;   
-            }
-            else
-            {
-                Program.formChinh.MA.Text = "Mã: " + Program.username;
-                Program.formChinh.HOTEN.Text = "Họ và Tên: " + Program.mHoten;
-                Program.formChinh.NHOM.Text = "Nhóm: " + Program.mGroup;
-            }
+            
             MessageBox.Show("Đăng nhập thành công!", "", MessageBoxButtons.OK);
-            closeForm();
+            
+            Program.formChinh = new formMain();
+            Program.formChinh.Activate();
+            Program.formChinh.Show();
+            Program.formDangNhap.Visible = false;
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

@@ -35,45 +35,23 @@ namespace THITRACNGHIEM
 
             this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
             this.bODETableAdapter.Fill(this.DS.BODE);
-            //         macs = ((DataRowView)bdsMH[0])["MACS"].ToString();
-            cmbCoSo.DataSource = Program.bds_dspm;
-            cmbCoSo.DisplayMember = "TenCS";
-            cmbCoSo.ValueMember = "TenServer";
-            cmbCoSo.SelectedIndex = Program.mCoSo;
-            if (Program.mGroup == "TRUONG") cmbCoSo.Enabled = true;
-            else cmbCoSo.Enabled = false;
-            btnGhi.Enabled = btnUndo.Enabled = false;
-            grbMH.Enabled = false;
 
-        }
-
-        private void cmbCoSo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /*if (cmbCoSo.SelectedValue.ToString() == "System.Data.DataRowView")
-                Program.servername = cmbCoSo.SelectedValue.ToString();
-
-            if (cmbCoSo.SelectedIndex != Program.mCoSo)
+            if (Program.mGroup == "TRUONG")
             {
-                Program.mlogin = Program.remoteLogin;
-                Program.password = Program.remotePassword;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
+                btnReload.Enabled = true;
+                grbMH.Enabled = false;
             }
             else
             {
-                Program.mlogin = Program.mloginDN;
-                Program.password = Program.passwordDN;
+                btnGhi.Enabled = btnUndo.Enabled = false;
+                grbMH.Enabled = false;
             }
+            
 
-            if (Program.KetNoi() == 0)
-            {
-                MessageBox.Show("Lỗi kết nối về cơ sở mới", "", MessageBoxButtons.OK);
-            }
-            else
-            {
-                this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
-                //  macs = ((DataRowView)bdsMH[0])["MACS"].ToString();
-            }*/
         }
+
+        
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -166,7 +144,8 @@ namespace THITRACNGHIEM
             Program.myReader.Read();
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
-            if (result == 1)
+            int positionMAMH = bdsMH.Find("MAMH", txtMaMH.Text);
+            if (result == 1 && (bdsMH.Position != positionMAMH))
             {
                 MessageBox.Show("Mã môn học đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaMH.Focus();
@@ -238,6 +217,11 @@ namespace THITRACNGHIEM
             }
             else
                 Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -12,7 +12,8 @@ namespace THITRACNGHIEM
 {
     public partial class formLop : Form
     {
-        public int vitri;
+        public int vitriLop;
+        public int vitriSV;
         public formLop()
         {
             InitializeComponent();
@@ -25,10 +26,25 @@ namespace THITRACNGHIEM
             this.tableAdapterManager.UpdateAll(this.DS);
 
         }
+        public void load()
+        {
+            DS.EnforceConstraints = false;
+            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+            this.kHOATableAdapter.Fill(this.DS.KHOA);
 
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.lOPTableAdapter.Fill(this.DS.LOP);
+
+            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
+
+            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.sINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
+        } 
         private void formLop_Load(object sender, EventArgs e)
         {
             
+
             DS.EnforceConstraints = false;
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.DS.KHOA);
@@ -42,18 +58,26 @@ namespace THITRACNGHIEM
             this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
 
-            /* cmbCoSo.DataSource = Program.bds_dspm;
-             cmbCoSo.DisplayMember = "TenCS";
-             cmbCoSo.ValueMember = "TenServer";
-             cmbCoSo.SelectedIndex = Program.mCoSo           if (Program.mGroup == "TRUONG") cmbCoSo.Enabled = true;
-             else cmbCoSo.Enabled = false;*/
-            btnGhi.Enabled = btnUndo.Enabled = false;
-            grbLop.Enabled = false;
+            this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.bANGDIEMTableAdapter.Fill(this.DS.BANGDIEM);
+            if (Program.mGroup == "TRUONG")
+            {
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
+                btnReload.Enabled = true;
+                grbLop.Enabled = false;
+                contextMenuStrip1.Enabled = false;
+            }
+            else
+            {
+                btnGhi.Enabled = btnUndo.Enabled = false;
+                grbLop.Enabled = false;
+            }
+           
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitriLop = bdsLop.Position;
             grbLop.Enabled = true;
             bdsLop.AddNew();
 
@@ -92,7 +116,7 @@ namespace THITRACNGHIEM
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsLop.Position;
+            vitriLop = bdsLop.Position;
             grbLop.Enabled = true;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnUndo.Enabled = true;
@@ -107,7 +131,7 @@ namespace THITRACNGHIEM
                 this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.lOPTableAdapter.Fill(this.DS.LOP);
             }
-            bdsLop.Position = vitri;
+            bdsLop.Position = vitriLop;
             gcLop.Enabled = true;
             btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = gcLop.Enabled = btnReload.Enabled = true;
             btnGhi.Enabled = btnUndo.Enabled = false;
@@ -142,7 +166,8 @@ namespace THITRACNGHIEM
             Program.myReader.Read();
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
-            if (result == 1)
+            int positionMALOP = bdsLop.Find("MALOP", txtMaLop.Text);
+            if (result == 1 && (bdsLop.Position != positionMALOP) )
             {
                 MessageBox.Show("Mã lớp đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaLop.Focus();
@@ -152,7 +177,7 @@ namespace THITRACNGHIEM
             {
                 bdsLop.EndEdit();
                 bdsLop.ResetCurrentItem();
-                bdsLop.Position = vitri;
+                bdsLop.Position = vitriLop;
                 this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.lOPTableAdapter.Update(this.DS.LOP);
 
@@ -198,5 +223,114 @@ namespace THITRACNGHIEM
                 Close();
         }
 
+        //Thêm sửa xóa ghi sinh viên////////////
+        public string maSV, hoSV, tenSV, ngaySinhSV, diaChiSV;
+
+        private void btnXoaSV_Click(object sender, EventArgs e)
+        {
+            if (bdsBangDiem.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa sinh viên đã làm bài thi!", "", MessageBoxButtons.OK);
+                return;
+            }
+            
+            if (MessageBox.Show("Bạn có thực sự muốn xóa sinh viên này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    bdsSV.RemoveCurrent();
+                    this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.sINHVIENTableAdapter.Update(this.DS.SINHVIEN);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa sinh viên!\n" + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+        }
+
+        private void btnSuaSV_Click(object sender, EventArgs e)
+        {
+            vitriLop = bdsLop.Position;
+            vitriSV = bdsSV.Position;
+            formSV frm = new formSV();
+            frm.masv = ((DataRowView)bdsSV[bdsSV.Position])["MASV"].ToString();
+            frm.hosv = ((DataRowView)bdsSV[bdsSV.Position])["HO"].ToString();
+            frm.tensv = ((DataRowView)bdsSV[bdsSV.Position])["TEN"].ToString();
+            frm.ngaysinh = ((DataRowView)bdsSV[bdsSV.Position])["NGAYSINH"].ToString();
+            frm.diachisv = ((DataRowView)bdsSV[bdsSV.Position])["DIACHI"].ToString();
+            frm.maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
+            frm.mydata = new formSV.GETDATA(getValue);
+            frm.ShowDialog();
+            if (frm.flagAdd)
+            {
+                ghiSV();
+            }
+            else
+            {
+                bdsSV.Position = vitriSV;
+                bdsSV.CancelEdit();
+            }
+        }
+
+        public void getValue(string ma, string ho, string ten, string ngaySinh, string diaChi)
+        {
+            maSV = ma;
+            hoSV = ho;
+            tenSV = ten;
+            ngaySinhSV = ngaySinh;
+            diaChiSV = diaChi;
+        }
+        private void btnThemSV_Click(object sender, EventArgs e)
+        {
+            vitriLop = bdsLop.Position;
+            vitriSV = bdsSV.Position;
+            bdsSV.AddNew();
+            formSV frm = new formSV();
+            frm.maLop = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
+            frm.mydata = new formSV.GETDATA(getValue);
+            frm.ShowDialog();
+
+            if (frm.flagAdd)
+            {
+                ghiSV();
+            }
+            else
+            {
+                
+                bdsSV.CancelEdit();
+                bdsSV.Position = vitriSV;
+
+            }
+
+        }
+
+        private void ghiSV()
+        {
+            
+            try
+            {
+                ((DataRowView)bdsSV[bdsSV.Position])["MASV"] = maSV;
+                ((DataRowView)bdsSV[bdsSV.Position])["HO"] = hoSV;
+                ((DataRowView)bdsSV[bdsSV.Position])["TEN"] = tenSV;
+                ((DataRowView)bdsSV[bdsSV.Position])["NGAYSINH"] = ngaySinhSV;
+                ((DataRowView)bdsSV[bdsSV.Position])["DIACHI"] = diaChiSV;
+                ((DataRowView)bdsSV[bdsSV.Position])["MALOP"] = ((DataRowView)bdsLop[bdsLop.Position])["MALOP"].ToString();
+                bdsSV.EndEdit();
+                bdsSV.ResetCurrentItem();
+                bdsLop.Position = vitriLop;
+                bdsSV.Position = vitriSV;
+                this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.sINHVIENTableAdapter.Update(this.DS.SINHVIEN);
+
+                MessageBox.Show("Ghi sinh viên thành công!", "", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi thêm sinh viên!\n" + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
     }
 }
