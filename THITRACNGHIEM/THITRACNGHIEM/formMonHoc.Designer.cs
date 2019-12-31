@@ -312,6 +312,7 @@
             this.colMAMH.Caption = "MÃ MÔN HỌC";
             this.colMAMH.FieldName = "MAMH";
             this.colMAMH.Name = "colMAMH";
+            this.colMAMH.OptionsColumn.AllowEdit = false;
             this.colMAMH.Visible = true;
             this.colMAMH.VisibleIndex = 0;
             // 
@@ -320,6 +321,7 @@
             this.colTENMH.Caption = "TÊN MÔN HỌC";
             this.colTENMH.FieldName = "TENMH";
             this.colTENMH.Name = "colTENMH";
+            this.colTENMH.OptionsColumn.AllowEdit = false;
             this.colTENMH.Visible = true;
             this.colTENMH.VisibleIndex = 1;
             // 

@@ -54,14 +54,11 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
-            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
             this.lOPTableAdapter = new THITRACNGHIEM.DSTableAdapters.LOPTableAdapter();
             this.mONHOCTableAdapter = new THITRACNGHIEM.DSTableAdapters.MONHOCTableAdapter();
             this.grbGVDK = new System.Windows.Forms.GroupBox();
             this.cmbMaMH = new System.Windows.Forms.ComboBox();
             this.cmbMaGV = new System.Windows.Forms.ComboBox();
-            this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
             this.dateNgayThi = new System.Windows.Forms.DateTimePicker();
             this.cmbTrinhDo = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -84,6 +81,9 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.gIAOVIENTableAdapter = new THITRACNGHIEM.DSTableAdapters.GIAOVIENTableAdapter();
+            this.gIAOVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.mONHOCBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
             tHOIGIANLabel = new System.Windows.Forms.Label();
             sOCAUTHILabel = new System.Windows.Forms.Label();
             lANLabel = new System.Windows.Forms.Label();
@@ -95,10 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
             this.grbGVDK.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seLan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSoCau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seThoiGian.Properties)).BeginInit();
@@ -107,6 +104,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tHOIGIANLabel
@@ -334,16 +334,6 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 614);
             // 
-            // bdsMonHoc
-            // 
-            this.bdsMonHoc.DataMember = "MONHOC";
-            this.bdsMonHoc.DataSource = this.DS;
-            // 
-            // bdsLop
-            // 
-            this.bdsLop.DataMember = "LOP";
-            this.bdsLop.DataSource = this.DS;
-            // 
             // lOPTableAdapter
             // 
             this.lOPTableAdapter.ClearBeforeFill = true;
@@ -383,8 +373,7 @@
             // 
             // cmbMaMH
             // 
-            this.cmbMaMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsMonHoc, "MAMH", true));
-            this.cmbMaMH.DataSource = this.bdsMonHoc;
+            this.cmbMaMH.DataSource = this.mONHOCBindingSource;
             this.cmbMaMH.DisplayMember = "MAMH";
             this.cmbMaMH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaMH.FormattingEnabled = true;
@@ -396,7 +385,7 @@
             // 
             // cmbMaGV
             // 
-            this.cmbMaGV.DataSource = this.bdsGiaoVien;
+            this.cmbMaGV.DataSource = this.gIAOVIENBindingSource;
             this.cmbMaGV.DisplayMember = "MAGV";
             this.cmbMaGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaGV.FormattingEnabled = true;
@@ -406,18 +395,15 @@
             this.cmbMaGV.TabIndex = 23;
             this.cmbMaGV.ValueMember = "MAGV";
             // 
-            // bdsGiaoVien
-            // 
-            this.bdsGiaoVien.DataMember = "GIAOVIEN";
-            this.bdsGiaoVien.DataSource = this.DS;
-            // 
             // dateNgayThi
             // 
-            this.dateNgayThi.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateNgayThi.CustomFormat = "dd/MM/yyyy";
+            this.dateNgayThi.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateNgayThi.Location = new System.Drawing.Point(136, 210);
             this.dateNgayThi.Name = "dateNgayThi";
             this.dateNgayThi.Size = new System.Drawing.Size(322, 26);
             this.dateNgayThi.TabIndex = 22;
+
             // 
             // cmbTrinhDo
             // 
@@ -471,7 +457,7 @@
             // cmbMaLop
             // 
             this.cmbMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGVDK, "MALOP", true));
-            this.cmbMaLop.DataSource = this.bdsLop;
+            this.cmbMaLop.DataSource = this.lOPBindingSource;
             this.cmbMaLop.DisplayMember = "TENLOP";
             this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaLop.FormattingEnabled = true;
@@ -670,6 +656,21 @@
             // 
             this.gIAOVIENTableAdapter.ClearBeforeFill = true;
             // 
+            // gIAOVIENBindingSource
+            // 
+            this.gIAOVIENBindingSource.DataMember = "GIAOVIEN";
+            this.gIAOVIENBindingSource.DataSource = this.DS;
+            // 
+            // mONHOCBindingSource
+            // 
+            this.mONHOCBindingSource.DataMember = "MONHOC";
+            this.mONHOCBindingSource.DataSource = this.DS;
+            // 
+            // lOPBindingSource
+            // 
+            this.lOPBindingSource.DataMember = "LOP";
+            this.lOPBindingSource.DataSource = this.DS;
+            // 
             // formChuanBiThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -689,11 +690,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
             this.grbGVDK.ResumeLayout(false);
             this.grbGVDK.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seLan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seSoCau.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seThoiGian.Properties)).EndInit();
@@ -702,6 +700,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,9 +725,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private System.Windows.Forms.BindingSource bdsLop;
         private DSTableAdapters.LOPTableAdapter lOPTableAdapter;
-        private System.Windows.Forms.BindingSource bdsMonHoc;
         private DSTableAdapters.MONHOCTableAdapter mONHOCTableAdapter;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraGrid.GridControl gcGVDK;
@@ -750,9 +749,11 @@
         private DevExpress.XtraEditors.SpinEdit seSoCau;
         private DevExpress.XtraEditors.SpinEdit seThoiGian;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private System.Windows.Forms.BindingSource bdsGiaoVien;
         private DSTableAdapters.GIAOVIENTableAdapter gIAOVIENTableAdapter;
         private System.Windows.Forms.ComboBox cmbMaGV;
         private System.Windows.Forms.ComboBox cmbMaMH;
+        private System.Windows.Forms.BindingSource gIAOVIENBindingSource;
+        private System.Windows.Forms.BindingSource mONHOCBindingSource;
+        private System.Windows.Forms.BindingSource lOPBindingSource;
     }
 }

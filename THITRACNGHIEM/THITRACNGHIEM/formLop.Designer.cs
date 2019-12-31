@@ -427,6 +427,7 @@
             this.colMALOP.Caption = "MÃ LỚP";
             this.colMALOP.FieldName = "MALOP";
             this.colMALOP.Name = "colMALOP";
+            this.colMALOP.OptionsColumn.AllowEdit = false;
             this.colMALOP.Visible = true;
             this.colMALOP.VisibleIndex = 0;
             // 
@@ -435,6 +436,7 @@
             this.colTENLOP.Caption = "TÊN LỚP";
             this.colTENLOP.FieldName = "TENLOP";
             this.colTENLOP.Name = "colTENLOP";
+            this.colTENLOP.OptionsColumn.AllowEdit = false;
             this.colTENLOP.Visible = true;
             this.colTENLOP.VisibleIndex = 1;
             // 
@@ -443,6 +445,7 @@
             this.colMAKH.Caption = "MÃ KHOA";
             this.colMAKH.FieldName = "MAKH";
             this.colMAKH.Name = "colMAKH";
+            this.colMAKH.OptionsColumn.AllowEdit = false;
             this.colMAKH.Visible = true;
             this.colMAKH.VisibleIndex = 2;
             // 
@@ -520,6 +523,7 @@
             this.colMASV.Caption = "MÃ SINH VIÊN";
             this.colMASV.FieldName = "MASV";
             this.colMASV.Name = "colMASV";
+            this.colMASV.OptionsColumn.AllowEdit = false;
             this.colMASV.Visible = true;
             this.colMASV.VisibleIndex = 0;
             // 
@@ -528,6 +532,7 @@
             this.colHO.Caption = "HỌ";
             this.colHO.FieldName = "HO";
             this.colHO.Name = "colHO";
+            this.colHO.OptionsColumn.AllowEdit = false;
             this.colHO.Visible = true;
             this.colHO.VisibleIndex = 1;
             // 
@@ -536,6 +541,7 @@
             this.colTEN.Caption = "TÊN";
             this.colTEN.FieldName = "TEN";
             this.colTEN.Name = "colTEN";
+            this.colTEN.OptionsColumn.AllowEdit = false;
             this.colTEN.Visible = true;
             this.colTEN.VisibleIndex = 2;
             // 
@@ -544,6 +550,7 @@
             this.colNGAYSINH.Caption = "NGÀY";
             this.colNGAYSINH.FieldName = "NGAYSINH";
             this.colNGAYSINH.Name = "colNGAYSINH";
+            this.colNGAYSINH.OptionsColumn.AllowEdit = false;
             this.colNGAYSINH.Visible = true;
             this.colNGAYSINH.VisibleIndex = 3;
             // 
@@ -552,6 +559,7 @@
             this.colDIACHI.Caption = "ĐỊA CHỈ";
             this.colDIACHI.FieldName = "DIACHI";
             this.colDIACHI.Name = "colDIACHI";
+            this.colDIACHI.OptionsColumn.AllowEdit = false;
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 4;
             // 
@@ -560,6 +568,7 @@
             this.colMALOP1.Caption = "MÃ LỚP";
             this.colMALOP1.FieldName = "MALOP";
             this.colMALOP1.Name = "colMALOP1";
+            this.colMALOP1.OptionsColumn.AllowEdit = false;
             this.colMALOP1.Visible = true;
             this.colMALOP1.VisibleIndex = 5;
             // 

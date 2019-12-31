@@ -145,6 +145,7 @@ namespace THITRACNGHIEM
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
             int positionMAMH = bdsMH.Find("MAMH", txtMaMH.Text);
+            int positionTenMH = bdsMH.Find("TENMH", txtTenMH.Text);
             if (result == 1 && (bdsMH.Position != positionMAMH))
             {
                 MessageBox.Show("Mã môn học đã tồn tại!", "", MessageBoxButtons.OK);
@@ -152,7 +153,7 @@ namespace THITRACNGHIEM
                 
                 return;
             }
-            if (result == 2 && (bdsMH.Position != positionMAMH))
+            if (result == 2 && (bdsMH.Position != positionTenMH))
             {
                 MessageBox.Show("Tên môn học đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaMH.Focus();

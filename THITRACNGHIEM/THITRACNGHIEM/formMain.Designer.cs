@@ -42,6 +42,7 @@
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btnBode = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChuanBi = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -50,6 +51,7 @@
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -66,8 +68,6 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCoSo = new System.Windows.Forms.ComboBox();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnChuanBi = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.btnMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -164,6 +164,7 @@
             this.btnThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThi.ImageOptions.SvgImage")));
             this.btnThi.LargeWidth = 100;
             this.btnThi.Name = "btnThi";
+            this.btnThi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThi_ItemClick);
             // 
             // btnKhoa
             // 
@@ -203,6 +204,15 @@
             this.btnBode.LargeWidth = 100;
             this.btnBode.Name = "btnBode";
             this.btnBode.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNhapDe_ItemClick);
+            // 
+            // btnChuanBi
+            // 
+            this.btnChuanBi.Caption = "CHUẨN BỊ THI";
+            this.btnChuanBi.Id = 24;
+            this.btnChuanBi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChuanBi.ImageOptions.SvgImage")));
+            this.btnChuanBi.LargeWidth = 100;
+            this.btnChuanBi.Name = "btnChuanBi";
+            this.btnChuanBi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuanBi_ItemClick);
             // 
             // ribbonPage1
             // 
@@ -256,6 +266,11 @@
             // 
             this.ribbonPageGroup9.ItemLinks.Add(this.btnBode);
             this.ribbonPageGroup9.Name = "ribbonPageGroup9";
+            // 
+            // ribbonPageGroup8
+            // 
+            this.ribbonPageGroup8.ItemLinks.Add(this.btnChuanBi);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
             // 
             // ribbonPage4
             // 
@@ -373,20 +388,6 @@
             this.cmbCoSo.Size = new System.Drawing.Size(187, 27);
             this.cmbCoSo.TabIndex = 0;
             this.cmbCoSo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // ribbonPageGroup8
-            // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnChuanBi);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            // 
-            // btnChuanBi
-            // 
-            this.btnChuanBi.Caption = "CHUẨN BỊ THI";
-            this.btnChuanBi.Id = 24;
-            this.btnChuanBi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnChuanBi.LargeWidth = 100;
-            this.btnChuanBi.Name = "btnChuanBi";
-            this.btnChuanBi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuanBi_ItemClick);
             // 
             // formMain
             // 

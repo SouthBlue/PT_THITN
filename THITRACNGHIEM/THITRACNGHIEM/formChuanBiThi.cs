@@ -106,6 +106,14 @@ namespace THITRACNGHIEM
                     bdsGVDK.RemoveCurrent();
                     this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
+                    load();
+                    cmbMaGV.SelectedIndex = -1;
+                    cmbMaMH.SelectedIndex = -1;
+                    cmbMaLop.SelectedIndex = -1;
+                    cmbTrinhDo.SelectedIndex = -1;
+                    seLan.Value = 1;
+                    seSoCau.Value = 10;
+                    seThoiGian.Value = 15;
                 }
                 catch (Exception ex)
                 {
@@ -251,16 +259,16 @@ namespace THITRACNGHIEM
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAMH"] = cmbMaMH.SelectedValue.ToString();
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["MALOP"] = cmbMaLop.SelectedValue.ToString();
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["TRINHDO"] = cmbTrinhDo.SelectedItem.ToString(); 
-                ((DataRowView)bdsGVDK[bdsGVDK.Position])["NGAYTHI"] = dateNgayThi.Value;
+                ((DataRowView)bdsGVDK[bdsGVDK.Position])["NGAYTHI"] = dateNgayThi.Value.ToString("dd/MM/yyyy");
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["LAN"] = seLan.Value;
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["SOCAUTHI"] = seSoCau.Value;
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["THOIGIAN"] = seThoiGian.Value;
                 bdsGVDK.EndEdit();
                 bdsGVDK.ResetCurrentItem();
-                bdsGVDK.Position = vitri;
+                
                 this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
-
+                bdsGVDK.Position = vitri;
 
                 load();
                 cmbMaGV.SelectedIndex = -1;
@@ -288,5 +296,7 @@ namespace THITRACNGHIEM
             load();
 
         }
+
+
     }
 }

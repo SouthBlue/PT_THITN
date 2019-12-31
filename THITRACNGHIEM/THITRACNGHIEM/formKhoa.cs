@@ -170,6 +170,7 @@ namespace THITRACNGHIEM
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
             int positionMAKH = bdsKhoa.Find("MAKH", txtMaKhoa.Text);
+            int positionTenKH = bdsKhoa.Find("TENKH", txtTenKhoa.Text);
             if (result == 1 && (bdsKhoa.Position != positionMAKH))
             {
                 MessageBox.Show("Mã khoa đã tồn tại!", "", MessageBoxButtons.OK);
@@ -177,7 +178,7 @@ namespace THITRACNGHIEM
 
                 return;
             }
-            if (result == 2 && (bdsKhoa.Position != positionMAKH))
+            if (result == 2 && (bdsKhoa.Position != positionTenKH))
             {
                 MessageBox.Show("Tên khoa đã tồn tại!", "", MessageBoxButtons.OK);
                 txtTenKhoa.Focus();

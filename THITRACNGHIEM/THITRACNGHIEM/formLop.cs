@@ -167,13 +167,14 @@ namespace THITRACNGHIEM
             int result = int.Parse(Program.myReader.GetValue(0).ToString());
             Program.myReader.Close();
             int positionMALOP = bdsLop.Find("MALOP", txtMaLop.Text);
+            int positionTenLOP = bdsLop.Find("TENLOP", txtTenLop.Text);
             if (result == 1 && (bdsLop.Position != positionMALOP) )
             {
                 MessageBox.Show("Mã lớp đã tồn tại!", "", MessageBoxButtons.OK);
                 txtMaLop.Focus();
                 return;
             }
-            if (result == 2 && (bdsLop.Position != positionMALOP))
+            if (result == 2 && (bdsLop.Position != positionTenLOP))
             {
                 MessageBox.Show("Tên lớp đã tồn tại!", "", MessageBoxButtons.OK);
                 txtTenLop.Focus();
