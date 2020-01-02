@@ -43,6 +43,9 @@
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.btnBode = new DevExpress.XtraBars.BarButtonItem();
             this.btnChuanBi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnKetQua = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBangDiem = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDSDK = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -56,6 +59,8 @@
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
@@ -96,10 +101,13 @@
             this.btnSV,
             this.barEditItem1,
             this.btnBode,
-            this.btnChuanBi});
+            this.btnChuanBi,
+            this.btnKetQua,
+            this.btnBangDiem,
+            this.btnDSDK});
             this.btnMonHoc.Location = new System.Drawing.Point(0, 0);
             this.btnMonHoc.Margin = new System.Windows.Forms.Padding(4);
-            this.btnMonHoc.MaxItemId = 25;
+            this.btnMonHoc.MaxItemId = 28;
             this.btnMonHoc.Name = "btnMonHoc";
             this.btnMonHoc.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -125,7 +133,7 @@
             // 
             // btnExit
             // 
-            this.btnExit.Caption = "Thoát";
+            this.btnExit.Caption = "THOÁT";
             this.btnExit.Id = 5;
             this.btnExit.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExit.ImageOptions.SvgImage")));
             this.btnExit.LargeWidth = 70;
@@ -135,10 +143,11 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Caption = "Tạo login";
+            this.btnRegister.Caption = "TẠO LOGIN";
             this.btnRegister.Id = 6;
             this.btnRegister.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRegister.ImageOptions.SvgImage")));
             this.btnRegister.Name = "btnRegister";
+            this.btnRegister.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRegister_ItemClick);
             // 
             // btnLop
             // 
@@ -151,7 +160,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Caption = "Đăng xuất";
+            this.btnLogout.Caption = "ĐĂNG XUẤT";
             this.btnLogout.Id = 8;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
             this.btnLogout.Name = "btnLogout";
@@ -159,7 +168,7 @@
             // 
             // btnThi
             // 
-            this.btnThi.Caption = "Làm bài thi";
+            this.btnThi.Caption = "LÀM BÀI THI";
             this.btnThi.Id = 9;
             this.btnThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThi.ImageOptions.SvgImage")));
             this.btnThi.LargeWidth = 100;
@@ -213,6 +222,32 @@
             this.btnChuanBi.LargeWidth = 100;
             this.btnChuanBi.Name = "btnChuanBi";
             this.btnChuanBi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChuanBi_ItemClick);
+            // 
+            // btnKetQua
+            // 
+            this.btnKetQua.Caption = "XEM KẾT QUẢ";
+            this.btnKetQua.Id = 25;
+            this.btnKetQua.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnKetQua.ImageOptions.SvgImage")));
+            this.btnKetQua.LargeWidth = 100;
+            this.btnKetQua.Name = "btnKetQua";
+            this.btnKetQua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKetQua_ItemClick);
+            // 
+            // btnBangDiem
+            // 
+            this.btnBangDiem.Caption = "BẢNG ĐIỂM MÔN HỌC";
+            this.btnBangDiem.Id = 26;
+            this.btnBangDiem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBangDiem.ImageOptions.SvgImage")));
+            this.btnBangDiem.LargeWidth = 100;
+            this.btnBangDiem.Name = "btnBangDiem";
+            this.btnBangDiem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBangDiem_ItemClick);
+            // 
+            // btnDSDK
+            // 
+            this.btnDSDK.Caption = "DANH SÁCH ĐĂNG KÝ THI";
+            this.btnDSDK.Id = 27;
+            this.btnDSDK.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDSDK.ImageOptions.SvgImage")));
+            this.btnDSDK.LargeWidth = 100;
+            this.btnDSDK.Name = "btnDSDK";
             // 
             // ribbonPage1
             // 
@@ -287,14 +322,26 @@
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup10,
+            this.ribbonPageGroup11});
             this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "HỖ TRỢ";
+            this.ribbonPage3.Text = "BÁO CÁO";
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnKetQua);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
-            this.ribbonPageGroup3.Text = "ribbonPageGroup3";
+            // 
+            // ribbonPageGroup10
+            // 
+            this.ribbonPageGroup10.ItemLinks.Add(this.btnBangDiem);
+            this.ribbonPageGroup10.Name = "ribbonPageGroup10";
+            // 
+            // ribbonPageGroup11
+            // 
+            this.ribbonPageGroup11.ItemLinks.Add(this.btnDSDK);
+            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
             // 
             // repositoryItemComboBox2
             // 
@@ -463,6 +510,11 @@
         private System.Windows.Forms.ComboBox cmbCoSo;
         private DevExpress.XtraBars.BarButtonItem btnChuanBi;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem btnKetQua;
+        private DevExpress.XtraBars.BarButtonItem btnBangDiem;
+        private DevExpress.XtraBars.BarButtonItem btnDSDK;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
     }
 }
 

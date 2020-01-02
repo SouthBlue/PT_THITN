@@ -58,6 +58,7 @@
             this.colLAN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnThoat = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.seLanThi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mONHOCBindingSource)).BeginInit();
@@ -70,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.seLanThi);
             this.groupBox1.Controls.Add(this.cmbMH);
             this.groupBox1.Controls.Add(this.txtTenLop);
@@ -161,7 +163,7 @@
             // 
             // btnBATĐAU
             // 
-            this.btnBATĐAU.Location = new System.Drawing.Point(557, 215);
+            this.btnBATĐAU.Location = new System.Drawing.Point(409, 216);
             this.btnBATĐAU.Name = "btnBATĐAU";
             this.btnBATĐAU.Size = new System.Drawing.Size(177, 54);
             this.btnBATĐAU.TabIndex = 15;
@@ -277,6 +279,7 @@
             this.colSOCAUTHI,
             this.colTHOIGIAN});
             this.gridView1.GridControl = this.gIAOVIEN_DANGKYGridControl;
+            this.gridView1.GroupPanelText = "DANH SÁCH KỲ THI";
             this.gridView1.Name = "gridView1";
             // 
             // colMAMH
@@ -284,6 +287,7 @@
             this.colMAMH.Caption = "MÃ MÔN HỌC";
             this.colMAMH.FieldName = "MAMH";
             this.colMAMH.Name = "colMAMH";
+            this.colMAMH.OptionsColumn.ReadOnly = true;
             this.colMAMH.Visible = true;
             this.colMAMH.VisibleIndex = 0;
             // 
@@ -292,6 +296,7 @@
             this.colMALOP.Caption = "MÃ LỚP";
             this.colMALOP.FieldName = "MALOP";
             this.colMALOP.Name = "colMALOP";
+            this.colMALOP.OptionsColumn.ReadOnly = true;
             this.colMALOP.Visible = true;
             this.colMALOP.VisibleIndex = 1;
             // 
@@ -300,6 +305,7 @@
             this.colTRINHDO.Caption = "TRÌNH ĐỘ";
             this.colTRINHDO.FieldName = "TRINHDO";
             this.colTRINHDO.Name = "colTRINHDO";
+            this.colTRINHDO.OptionsColumn.ReadOnly = true;
             this.colTRINHDO.Visible = true;
             this.colTRINHDO.VisibleIndex = 2;
             // 
@@ -308,6 +314,7 @@
             this.colNGAYTHI.Caption = "NGÀY THI";
             this.colNGAYTHI.FieldName = "NGAYTHI";
             this.colNGAYTHI.Name = "colNGAYTHI";
+            this.colNGAYTHI.OptionsColumn.ReadOnly = true;
             this.colNGAYTHI.Visible = true;
             this.colNGAYTHI.VisibleIndex = 3;
             // 
@@ -316,6 +323,7 @@
             this.colLAN.Caption = "LẦN";
             this.colLAN.FieldName = "LAN";
             this.colLAN.Name = "colLAN";
+            this.colLAN.OptionsColumn.ReadOnly = true;
             this.colLAN.Visible = true;
             this.colLAN.VisibleIndex = 4;
             // 
@@ -324,6 +332,7 @@
             this.colSOCAUTHI.Caption = "SỐ CÂU THI";
             this.colSOCAUTHI.FieldName = "SOCAUTHI";
             this.colSOCAUTHI.Name = "colSOCAUTHI";
+            this.colSOCAUTHI.OptionsColumn.ReadOnly = true;
             this.colSOCAUTHI.Visible = true;
             this.colSOCAUTHI.VisibleIndex = 5;
             // 
@@ -332,8 +341,19 @@
             this.colTHOIGIAN.Caption = "THỜI GIAN";
             this.colTHOIGIAN.FieldName = "THOIGIAN";
             this.colTHOIGIAN.Name = "colTHOIGIAN";
+            this.colTHOIGIAN.OptionsColumn.ReadOnly = true;
             this.colTHOIGIAN.Visible = true;
             this.colTHOIGIAN.VisibleIndex = 6;
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Location = new System.Drawing.Point(677, 216);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(162, 54);
+            this.btnThoat.TabIndex = 20;
+            this.btnThoat.Text = "THOÁT";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // formThi
             // 
@@ -393,5 +413,6 @@
         private System.Windows.Forms.BindingSource mONHOCBindingSource;
         private System.Windows.Forms.ComboBox cmbMH;
         private DevExpress.XtraEditors.SpinEdit seLanThi;
+        private System.Windows.Forms.Button btnThoat;
     }
 }

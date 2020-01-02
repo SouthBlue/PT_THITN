@@ -34,6 +34,7 @@ namespace THITRACNGHIEM
             {
                 btnThi.Enabled = false;
                 cmbCoSo.Enabled = true;
+                btnKetQua.Enabled = false;
             }
 
 
@@ -42,6 +43,8 @@ namespace THITRACNGHIEM
                 btnMH.Enabled = false;
                 btnKhoa.Enabled = false;
                 btnLop.Enabled = false;
+                btnChuanBi.Enabled = false;
+                btnKetQua.Enabled = false;
             }
             if (Program.mGroup == "SINHVIEN")
             {
@@ -49,10 +52,14 @@ namespace THITRACNGHIEM
                 btnKhoa.Enabled = false;
                 btnLop.Enabled = false;
                 btnBode.Enabled = false;
+                btnChuanBi.Enabled = false;
+                btnBangDiem.Enabled = false;
+                btnRegister.Enabled = false;
             }
             if (Program.mGroup == "COSO")
             {
                 cmbCoSo.Enabled = false;
+                btnKetQua.Enabled = false;
                 
             }
             Program.formKhoa = new formKhoa();
@@ -206,6 +213,39 @@ namespace THITRACNGHIEM
                 m.MdiParent = this;
                 m.Show();
             }
+        }
+
+        private void btnKetQua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(formKetQuaThi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                formKetQuaThi m = new formKetQuaThi();
+                m.MdiParent = this;
+                m.Show();
+            }
+        }
+
+        private void btnBangDiem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(formBangDiem));
+            if (frm != null) frm.Activate();
+            else
+            {
+                formBangDiem m = new formBangDiem();
+                m.MdiParent = this;
+                m.Show();
+            }
+        }
+
+        private void btnRegister_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+                formTaoLogin m = new formTaoLogin();
+
+                m.ShowDialog();
+           
         }
     }
 }

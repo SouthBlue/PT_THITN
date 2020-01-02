@@ -17,22 +17,15 @@ namespace THITRACNGHIEM
             InitializeComponent();
         }
         public int vitri;
-        private void gIAOVIEN_DANGKYBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.bdsGVDK.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.DS);
-
-        }
+ 
 
         private void formChuanBiThi_Load(object sender, EventArgs e)
         {
             
-
-
             DS.EnforceConstraints = false;
 
-            
+            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
 
             this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
@@ -43,35 +36,24 @@ namespace THITRACNGHIEM
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
 
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
-
-
-            cmbMaGV.SelectedIndex = -1;
-            cmbMaMH.SelectedIndex = -1;
-            cmbMaLop.SelectedIndex = -1;
-            cmbTrinhDo.SelectedIndex = -1;
+            if (Program.mGroup == "TRUONG")
+            {
+                btnThem.Enabled = btnXoa.Enabled =  btnGhi.Enabled =  false;
+                btnReload.Enabled = true;
+                
+            }
+           
             grbGVDK.Enabled = false;
         }
 
-        private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            vitri = bdsGVDK.Position;
-            bdsGVDK.AddNew();
-            seLan.Value = 1;
-            seSoCau.Value = 10;
-            seThoiGian.Value = 15;
-            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
-            gcGVDK.Enabled = false;
-            grbGVDK.Enabled = true;
-        }
+        
 
         private void btnUnDo_Click(object sender, EventArgs e)
         {
-            cmbMaGV.SelectedIndex = -1;
-            cmbMaMH.SelectedIndex = -1;
-            cmbMaLop.SelectedIndex = -1;
-            cmbTrinhDo.SelectedIndex = -1;
+
+            cmbMaMH.SelectedIndex = 0;
+            cmbMaLop.SelectedIndex = 0;
+            cmbTrinhDo.SelectedIndex = 0;
             seLan.Value = 1;
             seSoCau.Value = 10;
             seThoiGian.Value = 15;
@@ -79,13 +61,7 @@ namespace THITRACNGHIEM
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            cmbMaGV.SelectedIndex = -1;
-            cmbMaMH.SelectedIndex = -1;
-            cmbMaLop.SelectedIndex = -1;
-            cmbTrinhDo.SelectedIndex = -1;
-            seLan.Value = 1;
-            seSoCau.Value = 10;
-            seThoiGian.Value = 15;
+
             bdsGVDK.EndEdit();
             if (btnThem.Enabled == false)
             {
@@ -96,48 +72,7 @@ namespace THITRACNGHIEM
             btnThem.Enabled = btnXoa.Enabled = gcGVDK.Enabled = btnReload.Enabled = true;
             grbGVDK.Enabled = false;
         }
-
-        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (MessageBox.Show("Bạn có thực sự muốn xóa bản đăng ký này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                try
-                {
-                    bdsGVDK.RemoveCurrent();
-                    this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
-                    load();
-                    cmbMaGV.SelectedIndex = -1;
-                    cmbMaMH.SelectedIndex = -1;
-                    cmbMaLop.SelectedIndex = -1;
-                    cmbTrinhDo.SelectedIndex = -1;
-                    seLan.Value = 1;
-                    seSoCau.Value = 10;
-                    seThoiGian.Value = 15;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi xóa đăng ký thi!\n" + ex.Message, "", MessageBoxButtons.OK);
-                    return;
-                }
-            }
-        }
-
-        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            if (grbGVDK.Enabled == true)
-            {
-                if (MessageBox.Show("Dữ liệu chưa được ghi!\n Bạn chắc chắn muốn thoát?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    bdsGVDK.CancelEdit();
-                    Close();
-                }
-                else return;
-            }
-            else
-                Close();
-        }
-        
+  
         private bool checkExists()
         {
             string strLenh = "DECLARE @result int " +
@@ -191,6 +126,7 @@ namespace THITRACNGHIEM
 
             this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
+
         }
         private void btnGhi_Click(object sender, EventArgs e)
         {
@@ -200,19 +136,19 @@ namespace THITRACNGHIEM
                 cmbMaGV.Focus();
                 return;
             }
-            if (cmbMaMH.SelectedIndex == -1)
+            if (cmbMaMH.Text == null)
             {
                 MessageBox.Show("Vui lòng chọn mã môn học!", "", MessageBoxButtons.OK);
                 cmbMaMH.Focus();
                 return;
             }
-            if (cmbMaLop.SelectedIndex == -1)
+            if (cmbMaLop.Text == null)
             {
                 MessageBox.Show("Vui lòng chọn mã lớp!", "", MessageBoxButtons.OK);
                 cmbMaLop.Focus();
                 return;
             }
-            if (cmbTrinhDo.SelectedIndex == -1)
+            if (cmbTrinhDo.Text == null)
             {
                 MessageBox.Show("Vui lòng chọn trình độ!", "", MessageBoxButtons.OK);
                 cmbTrinhDo.Focus();
@@ -255,29 +191,19 @@ namespace THITRACNGHIEM
             }
             try
             {
-                ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAGV"] = cmbMaGV.SelectedValue.ToString();
-                ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAMH"] = cmbMaMH.SelectedValue.ToString();
+                ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAGV"] = cmbMaGV.Text;
+                ((DataRowView)bdsGVDK[bdsGVDK.Position])["MAMH"] = cmbMaMH.Text;
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["MALOP"] = cmbMaLop.SelectedValue.ToString();
-                ((DataRowView)bdsGVDK[bdsGVDK.Position])["TRINHDO"] = cmbTrinhDo.SelectedItem.ToString(); 
+                ((DataRowView)bdsGVDK[bdsGVDK.Position])["TRINHDO"] = cmbTrinhDo.Text; 
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["NGAYTHI"] = dateNgayThi.Value.ToString("dd/MM/yyyy");
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["LAN"] = seLan.Value;
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["SOCAUTHI"] = seSoCau.Value;
                 ((DataRowView)bdsGVDK[bdsGVDK.Position])["THOIGIAN"] = seThoiGian.Value;
                 bdsGVDK.EndEdit();
                 bdsGVDK.ResetCurrentItem();
-                
-                this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
                 bdsGVDK.Position = vitri;
+                this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
 
-                load();
-                cmbMaGV.SelectedIndex = -1;
-                cmbMaMH.SelectedIndex = -1;
-                cmbMaLop.SelectedIndex = -1;
-                cmbTrinhDo.SelectedIndex = -1;
-                seLan.Value = 1;
-                seSoCau.Value = 10;
-                seThoiGian.Value = 15;
 
                 MessageBox.Show("Ghi bản đăng ký thành công!", "", MessageBoxButtons.OK);
             }
@@ -291,12 +217,66 @@ namespace THITRACNGHIEM
             grbGVDK.Enabled = false;
         }
 
-        private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+
+
+        private void btnThoat_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            load();
+            if (grbGVDK.Enabled == true)
+            {
+                if (MessageBox.Show("Dữ liệu chưa được ghi!\n Bạn chắc chắn muốn thoát?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    bdsGVDK.CancelEdit();
+                    Close();
+                }
+                else return;
+            }
+            else
+                Close();
+        }
+
+        private void btnXoa_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có thực sự muốn xóa bản đăng ký này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    bdsGVDK.RemoveCurrent();
+                    this.gIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
+                    if (Program.mGroup == "GIANGVIEN")
+                    {
+                        
+                        cmbMaGV.Enabled = false;
+                        bdsGVDK.Filter = "MAGV = '" + Program.username + "'";
+                        cmbMaGV.SelectedValue = Program.username;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa đăng ký thi!\n" + ex.Message, "", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+        }
+
+        private void btnReload_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
+            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
+            this.lOPTableAdapter.Fill(this.DS.LOP);
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
 
         }
 
-
+        private void btnThem_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            vitri = bdsGVDK.Position;
+            bdsGVDK.AddNew();
+            seLan.Value = 1;
+            seSoCau.Value = 10;
+            seThoiGian.Value = 15;
+            btnThem.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
+            gcGVDK.Enabled = false;
+            grbGVDK.Enabled = true;
+        }
     }
 }
