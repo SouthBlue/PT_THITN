@@ -31,6 +31,10 @@ namespace THITRACNGHIEM
             this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
             this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
             this.bODETableAdapter.Fill(this.DS.BODE);
+            if (Program.mGroup == "GIANGVIEN")
+            {
+                bdsBoDe.Filter = "MAGV = '" + Program.username + "'";
+            }
         }
         private void formNhapDe_Load(object sender, EventArgs e)
         {
@@ -50,6 +54,10 @@ namespace THITRACNGHIEM
             {
                 btnGhi.Enabled = btnUndo.Enabled = false;
                 grbBODE.Enabled = false;
+            }
+            if(Program.mGroup == "GIANGVIEN")
+            {
+                bdsBoDe.Filter = "MAGV = '" + Program.username + "'"; 
             }
         }
 
@@ -87,7 +95,6 @@ namespace THITRACNGHIEM
                     try
                     {
                         bdsBoDe.RemoveCurrent();
-                        this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
                         this.bODETableAdapter.Update(this.DS.BODE);
                     }
                     catch (Exception ex)
@@ -121,8 +128,11 @@ namespace THITRACNGHIEM
             bdsBoDe.CancelEdit();
             if (btnThem.Enabled == false)
             {
-                this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.bODETableAdapter.Fill(this.DS.BODE);
+                if (Program.mGroup == "GIANGVIEN")
+                {
+                    bdsBoDe.Filter = "MAGV = '" + Program.username + "'";
+                }
             }
             bdsBoDe.Position = vitri;
             gcBODE.Enabled = true;
@@ -163,7 +173,6 @@ namespace THITRACNGHIEM
                 bdsBoDe.EndEdit();
                 bdsBoDe.ResetCurrentItem();
                 bdsBoDe.Position = vitri;
-                this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.bODETableAdapter.Update(this.DS.BODE);
 
                 MessageBox.Show("Ghi câu hỏi thành công!", "", MessageBoxButtons.OK);
@@ -180,10 +189,14 @@ namespace THITRACNGHIEM
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
-            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.bODETableAdapter.Fill(this.DS.BODE);
+            if (Program.mGroup == "GIANGVIEN")
+            {
+                bdsBoDe.Filter = "MAGV = '" + Program.username + "'";
+            }
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

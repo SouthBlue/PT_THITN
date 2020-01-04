@@ -42,7 +42,7 @@ namespace THITRACNGHIEM
                 btnReload.Enabled = true;
                 
             }
-           
+            cmbTrinhDo.SelectedIndex = 0;
             grbGVDK.Enabled = false;
         }
 
@@ -65,7 +65,7 @@ namespace THITRACNGHIEM
             bdsGVDK.EndEdit();
             if (btnThem.Enabled == false)
             {
-                this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+
                 this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
             }
             bdsGVDK.Position = vitri;
@@ -113,21 +113,7 @@ namespace THITRACNGHIEM
                 return true;
         }
 
-        private void load()
-        {
-            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
 
-            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.lOPTableAdapter.Fill(this.DS.LOP);
-
-            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
-
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
-
-        }
         private void btnGhi_Click(object sender, EventArgs e)
         {
             if (cmbMaGV.SelectedIndex == -1)
@@ -148,7 +134,7 @@ namespace THITRACNGHIEM
                 cmbMaLop.Focus();
                 return;
             }
-            if (cmbTrinhDo.Text == null)
+            if (cmbTrinhDo.Text.Trim() == null)
             {
                 MessageBox.Show("Vui lòng chọn trình độ!", "", MessageBoxButtons.OK);
                 cmbTrinhDo.Focus();
@@ -257,13 +243,25 @@ namespace THITRACNGHIEM
                 }
             }
         }
+        public void load()
+        {
+            DS.EnforceConstraints = false;
 
+            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
+
+            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
+
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.lOPTableAdapter.Fill(this.DS.LOP);
+
+            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
+        }
         private void btnReload_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
-            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
-            this.lOPTableAdapter.Fill(this.DS.LOP);
-            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
+            load();
 
         }
 

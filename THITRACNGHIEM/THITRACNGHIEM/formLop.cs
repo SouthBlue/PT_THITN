@@ -159,7 +159,7 @@ namespace THITRACNGHIEM
                 return;
             }
             string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTMALOP '" + txtMaLop.Text + "', N'" +txtTenLop.Text +"' "+
+                            "EXEC @result = SP_KTMALOP '" + txtMaLop.Text + "', N'" +txtTenLop.Text.Trim() +"' "+
                             " SELECT 'result' = @result";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
@@ -202,16 +202,12 @@ namespace THITRACNGHIEM
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.DS.KHOA);
 
-            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
             this.lOPTableAdapter.Fill(this.DS.LOP);
 
-            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
 
-            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
         }
 
@@ -246,7 +242,6 @@ namespace THITRACNGHIEM
                 try
                 {
                     bdsSV.RemoveCurrent();
-                    this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.sINHVIENTableAdapter.Update(this.DS.SINHVIEN);
                 }
                 catch (Exception ex)
@@ -328,7 +323,6 @@ namespace THITRACNGHIEM
                 bdsSV.ResetCurrentItem();
                 bdsLop.Position = vitriLop;
                 bdsSV.Position = vitriSV;
-                this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.sINHVIENTableAdapter.Update(this.DS.SINHVIEN);
 
                 MessageBox.Show("Ghi sinh viên thành công!", "", MessageBoxButtons.OK);

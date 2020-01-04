@@ -38,9 +38,10 @@ namespace THITRACNGHIEM
         public static formKhoa formKhoa;
         public static formLop formLop;
         public static formNhapDe formNhapDe;
-        
+        public static formChuanBiThi formChuanBiThi;
 
-             
+
+
 
         public static int KetNoi()
         {

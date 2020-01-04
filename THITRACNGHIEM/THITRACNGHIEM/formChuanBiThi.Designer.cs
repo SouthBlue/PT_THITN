@@ -461,6 +461,7 @@
             this.colSOCAUTHI,
             this.colTHOIGIAN});
             this.gvGVDK.GridControl = this.gcGVDK;
+            this.gvGVDK.GroupPanelText = "DANH SÁCH ĐĂNG KÝ THI";
             this.gvGVDK.Name = "gvGVDK";
             // 
             // colMAGV

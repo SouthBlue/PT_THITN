@@ -27,13 +27,15 @@ namespace THITRACNGHIEM
 
         private void formTaoLogin_Load(object sender, EventArgs e)
         {
+
             DS.EnforceConstraints = false;
             this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
 
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
-            if(Program.mGroup == "TRUONG")
+            this.sP_GVCSTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.sP_GVCSTableAdapter.Fill(this.DS.SP_GVCS);
+
+            if (Program.mGroup == "TRUONG")
             {
                 rdCoSo.Enabled = rdGV.Enabled = rdSV.Enabled = false;
             }
@@ -103,12 +105,9 @@ namespace THITRACNGHIEM
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Hủy tạo tài khoản?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Close();
-            }
-            else
-                return;
+  
+                this.Close();
+
         }
         private string role()
         {
@@ -148,5 +147,7 @@ namespace THITRACNGHIEM
                 return;
             }
         }
+
+        
     }
 }

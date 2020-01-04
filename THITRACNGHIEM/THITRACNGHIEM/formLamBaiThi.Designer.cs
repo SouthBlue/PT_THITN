@@ -62,6 +62,15 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl5 = new DevExpress.XtraEditors.PanelControl();
             this.dgvDETHI = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dachon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnLast = new DevExpress.XtraEditors.SimpleButton();
             this.btnFirst = new DevExpress.XtraEditors.SimpleButton();
@@ -73,15 +82,7 @@
             this.bANGDIEMTableAdapter = new THITRACNGHIEM.DSTableAdapters.BANGDIEMTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.sP_LAYDETHITableAdapter = new THITRACNGHIEM.DSTableAdapters.SP_LAYDETHITableAdapter();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dachon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,6 +114,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.lbPhut);
             this.groupBox2.Controls.Add(this.lbGio);
             this.groupBox2.Controls.Add(this.lbGiay);
@@ -130,7 +132,7 @@
             // 
             this.lbPhut.AutoSize = true;
             this.lbPhut.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPhut.Location = new System.Drawing.Point(113, 43);
+            this.lbPhut.Location = new System.Drawing.Point(109, 53);
             this.lbPhut.Name = "lbPhut";
             this.lbPhut.Size = new System.Drawing.Size(42, 31);
             this.lbPhut.TabIndex = 5;
@@ -141,7 +143,7 @@
             this.lbGio.AutoSize = true;
             this.lbGio.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbGio.ForeColor = System.Drawing.Color.Black;
-            this.lbGio.Location = new System.Drawing.Point(44, 43);
+            this.lbGio.Location = new System.Drawing.Point(40, 53);
             this.lbGio.Name = "lbGio";
             this.lbGio.Size = new System.Drawing.Size(42, 31);
             this.lbGio.TabIndex = 4;
@@ -151,7 +153,7 @@
             // 
             this.lbGiay.AutoSize = true;
             this.lbGiay.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGiay.Location = new System.Drawing.Point(182, 43);
+            this.lbGiay.Location = new System.Drawing.Point(178, 53);
             this.lbGiay.Name = "lbGiay";
             this.lbGiay.Size = new System.Drawing.Size(42, 31);
             this.lbGiay.TabIndex = 3;
@@ -161,7 +163,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(157, 43);
+            this.label6.Location = new System.Drawing.Point(153, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(20, 31);
             this.label6.TabIndex = 2;
@@ -171,7 +173,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(87, 43);
+            this.label5.Location = new System.Drawing.Point(83, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(20, 31);
             this.label5.TabIndex = 1;
@@ -464,6 +466,70 @@
             this.dgvDETHI.TabIndex = 0;
             this.dgvDETHI.Click += new System.EventHandler(this.dgvDETHI_Click);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "CAUHOI";
+            this.dataGridViewTextBoxColumn1.HeaderText = "CAUHOI";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOIDUNG";
+            this.dataGridViewTextBoxColumn2.HeaderText = "NOIDUNG";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "A";
+            this.dataGridViewTextBoxColumn3.HeaderText = "A";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "B";
+            this.dataGridViewTextBoxColumn4.HeaderText = "B";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "C";
+            this.dataGridViewTextBoxColumn5.HeaderText = "C";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "D";
+            this.dataGridViewTextBoxColumn6.HeaderText = "D";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "DAP_AN";
+            this.dataGridViewTextBoxColumn7.HeaderText = "DAP_AN";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Visible = false;
+            // 
+            // stt
+            // 
+            this.stt.FillWeight = 120F;
+            this.stt.HeaderText = "STT CÂU HỎI";
+            this.stt.Name = "stt";
+            this.stt.ReadOnly = true;
+            // 
+            // dachon
+            // 
+            this.dachon.HeaderText = "ĐÃ CHỌN";
+            this.dachon.Name = "dachon";
+            this.dachon.ReadOnly = true;
+            this.dachon.Width = 107;
+            // 
             // panelControl4
             // 
             this.panelControl4.Controls.Add(this.btnLast);
@@ -565,69 +631,15 @@
             // 
             this.sP_LAYDETHITableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridViewTextBoxColumn1
+            // label7
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "CAUHOI";
-            this.dataGridViewTextBoxColumn1.HeaderText = "CAUHOI";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NOIDUNG";
-            this.dataGridViewTextBoxColumn2.HeaderText = "NOIDUNG";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "A";
-            this.dataGridViewTextBoxColumn3.HeaderText = "A";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "B";
-            this.dataGridViewTextBoxColumn4.HeaderText = "B";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "C";
-            this.dataGridViewTextBoxColumn5.HeaderText = "C";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "D";
-            this.dataGridViewTextBoxColumn6.HeaderText = "D";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "DAP_AN";
-            this.dataGridViewTextBoxColumn7.HeaderText = "DAP_AN";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Visible = false;
-            // 
-            // stt
-            // 
-            this.stt.FillWeight = 120F;
-            this.stt.HeaderText = "STT CÂU HỎI";
-            this.stt.Name = "stt";
-            this.stt.ReadOnly = true;
-            // 
-            // dachon
-            // 
-            this.dachon.HeaderText = "ĐÃ CHỌN";
-            this.dachon.Name = "dachon";
-            this.dachon.ReadOnly = true;
-            this.dachon.Width = 107;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(85, 17);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 19);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "THỜI GIAN";
             // 
             // formLamBaiThi
             // 
@@ -725,5 +737,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn stt;
         private System.Windows.Forms.DataGridViewTextBoxColumn dachon;
+        private System.Windows.Forms.Label label7;
     }
 }

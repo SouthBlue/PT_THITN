@@ -35,6 +35,7 @@ namespace THITRACNGHIEM
                 btnThi.Enabled = false;
                 cmbCoSo.Enabled = true;
                 btnKetQua.Enabled = false;
+                btnBangDiem.Enabled = false;
             }
 
 
@@ -45,6 +46,8 @@ namespace THITRACNGHIEM
                 btnLop.Enabled = false;
                 btnChuanBi.Enabled = false;
                 btnKetQua.Enabled = false;
+                btnRegister.Enabled = false;
+                btnDSDK.Enabled = false;
             }
             if (Program.mGroup == "SINHVIEN")
             {
@@ -55,16 +58,17 @@ namespace THITRACNGHIEM
                 btnChuanBi.Enabled = false;
                 btnBangDiem.Enabled = false;
                 btnRegister.Enabled = false;
+                btnDSDK.Enabled = false;
             }
             if (Program.mGroup == "COSO")
             {
-                cmbCoSo.Enabled = false;
-                btnKetQua.Enabled = false;
+                cmbCoSo.Enabled = btnKetQua.Enabled = btnDSDK.Enabled = false;
                 
             }
             Program.formKhoa = new formKhoa();
             Program.formLop = new formLop();
             Program.formNhapDe = new formNhapDe();
+            Program.formChuanBiThi = new formChuanBiThi();
             btnLogout.Enabled = true;
             
         }
@@ -172,6 +176,7 @@ namespace THITRACNGHIEM
                         Program.formKhoa.load();
                         Program.formLop.load();
                         Program.formNhapDe.load();
+                        Program.formChuanBiThi.load();
                     }
                 }
             }
@@ -197,9 +202,10 @@ namespace THITRACNGHIEM
             if (frm != null) frm.Activate();
             else
             {
-                formChuanBiThi m = new formChuanBiThi();
-                m.MdiParent = this;
-                m.Show();
+                Program.formChuanBiThi = new formChuanBiThi();
+                Program.formChuanBiThi.MdiParent = this;
+                Program.formChuanBiThi.Show();
+                
             }
         }
 
@@ -246,6 +252,18 @@ namespace THITRACNGHIEM
 
                 m.ShowDialog();
            
+        }
+
+        private void btnDSDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(formReportDangKyThi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                formReportDangKyThi m = new formReportDangKyThi();
+                m.MdiParent = this;
+                m.Show();
+            }
         }
     }
 }

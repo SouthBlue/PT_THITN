@@ -85,7 +85,7 @@ namespace THITRACNGHIEM
                 try
                 {
                     bdsMH.RemoveCurrent();
-                    this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+
                     this.mONHOCTableAdapter.Update(this.DS.MONHOC);
                 }
                 catch (Exception ex)
@@ -111,7 +111,7 @@ namespace THITRACNGHIEM
             bdsMH.CancelEdit();
             if (btnThem.Enabled == false)
             {
-                this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+ 
                 this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
             }
             bdsMH.Position = vitri;
@@ -137,7 +137,7 @@ namespace THITRACNGHIEM
                 return;
             }
             string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTMAMH '" + txtMaMH.Text + "', N'" + txtTenMH.Text +"' "+
+                            "EXEC @result = SP_KTMAMH '" + txtMaMH.Text + "', N'" + txtTenMH.Text.Trim() +"' "+
                             " SELECT 'result' = @result";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
@@ -166,7 +166,7 @@ namespace THITRACNGHIEM
                 bdsMH.EndEdit();
                 bdsMH.ResetCurrentItem();
                 bdsMH.Position = vitri;
-                this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+
                 this.mONHOCTableAdapter.Update(this.DS.MONHOC);
 
                 MessageBox.Show("Ghi môn học thành công!", "", MessageBoxButtons.OK);
@@ -199,16 +199,16 @@ namespace THITRACNGHIEM
 
         private void bntReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
 
-            this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.bANGDIEMTableAdapter.Fill(this.DS.BANGDIEM);
 
-            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
 
-            this.bODETableAdapter.Connection.ConnectionString = Program.connstr;
+
             this.bODETableAdapter.Fill(this.DS.BODE);
         }
 

@@ -42,7 +42,6 @@ namespace THITRACNGHIEM
             if(rbtnB.Checked == true) 
             {
                 dgvDETHI.Rows[rowSelected].Cells["dachon"].Value = "B";
-                Console.WriteLine("B");
             }
             
         }
@@ -153,6 +152,7 @@ namespace THITRACNGHIEM
             {
                 timerTHI.Stop();
                 MessageBox.Show("Hết giờ");
+                nopbai();
             }
         }
 
@@ -260,8 +260,8 @@ namespace THITRACNGHIEM
         private void nopbai()
         {
             int c = CauDung();
-            double a = (10 / soCau) * c;
-            Diem = Math.Round(a, 2);
+            Diem = Math.Round((10.0 / soCau) * c, 2);
+            Console.WriteLine(Diem);
             if(Program.mGroup == "SINHVIEN")
             {
                 saveDataBangDiem();

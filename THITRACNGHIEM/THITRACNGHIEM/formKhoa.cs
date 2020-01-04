@@ -112,7 +112,7 @@ namespace THITRACNGHIEM
                 try
                 {
                     bdsKhoa.RemoveCurrent();
-                    this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+
                     this.kHOATableAdapter.Update(this.DS.KHOA);
                 }
                 catch (Exception ex)
@@ -137,7 +137,7 @@ namespace THITRACNGHIEM
             bdsKhoa.CancelEdit();
             if (btnThem.Enabled == false)
             {
-                this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+
                 this.kHOATableAdapter.Fill(this.DS.KHOA);
             }
             bdsKhoa.Position = vitriKH;
@@ -190,7 +190,7 @@ namespace THITRACNGHIEM
                 bdsKhoa.EndEdit();
                 bdsKhoa.ResetCurrentItem();
                 bdsKhoa.Position = vitriKH;
-                this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+
                 this.kHOATableAdapter.Update(this.DS.KHOA);
 
                 MessageBox.Show("Ghi Khoa thành công!", "", MessageBoxButtons.OK);
@@ -207,13 +207,12 @@ namespace THITRACNGHIEM
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+           
             this.kHOATableAdapter.Fill(this.DS.KHOA);
 
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
 
-            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+          
             this.lOPTableAdapter.Fill(this.DS.LOP);
         }
 

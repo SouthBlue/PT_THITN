@@ -248,6 +248,7 @@
             this.btnDSDK.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDSDK.ImageOptions.SvgImage")));
             this.btnDSDK.LargeWidth = 100;
             this.btnDSDK.Name = "btnDSDK";
+            this.btnDSDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDSDK_ItemClick);
             // 
             // ribbonPage1
             // 
