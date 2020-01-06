@@ -183,6 +183,12 @@
     <Compile Include="rptBanDiem.Designer.cs">
       <DependentUpon>rptBanDiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptDSDANGKY.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptDSDANGKY.Designer.cs">
+      <DependentUpon>rptDSDANGKY.cs</DependentUpon>
+    </Compile>
     <Compile Include="rptDSDKTHI.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     <EmbeddedResource Include="rptBanDiem.resx">
       <DependentUpon>rptBanDiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptDSDANGKY.resx">
+      <DependentUpon>rptDSDANGKY.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptDSDKTHI.resx">
       <DependentUpon>rptDSDKTHI.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,8 +275,8 @@
     </None>
     <None Include="DS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DS.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>

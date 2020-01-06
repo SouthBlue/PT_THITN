@@ -34,7 +34,7 @@ namespace THITRACNGHIEM
             cmbCS.ValueMember = "TENSERVER";
             cmbCS.SelectedIndex = -1;
             cmbCS.SelectedIndex = 0;
-
+            rdGV.Checked = true;
         }
 
         private void cmbCS_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,36 +50,67 @@ namespace THITRACNGHIEM
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
-            if (txtLogin.Text.Trim() == "" || txtPass.Text.Trim() == "")
+            if (rdSV.Checked == true)
             {
-                MessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
-                return;
+                if (txtLogin.Text.Trim() == "")
+                {
+                    MessageBox.Show("Login name không được trống", "", MessageBoxButtons.OK);
+                    return;
+                }
+                Program.mlogin = "SINHVIEN"; Program.password = "123456";
+                if (Program.KetNoi() == 0) return;
+                Program.mCoSo = cmbCS.SelectedIndex;
+                string strLenh = "EXEC SP_SV '" + txtLogin.Text + "'";
+
+                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                if (Program.myReader == null) return; 
+                Program.username = txtLogin.Text;
+                Program.myReader.Read();
+                try
+                {
+                    Program.mHoten = Program.myReader.GetString(0);
+                }
+                catch(Exception EX)
+                {
+                    MessageBox.Show("Không tồn tại sinh viên này", "", MessageBoxButtons.OK);
+                    return;
+                }
+                
+                Program.mGroup = "SINHVIEN";
+                Program.conn.Close();
             }
-            Program.mlogin = txtLogin.Text; Program.password = txtPass.Text;
-            if (Program.KetNoi() == 0) return;
-
-            Program.mCoSo = cmbCS.SelectedIndex;
-
-            Program.mloginDN = Program.mlogin;
-            Program.passwordDN = Program.password;
-            string strLenh = "EXEC SP_DANGNHAP '" + Program.mlogin + "'";
-
-            Program.myReader = Program.ExecSqlDataReader(strLenh);
-            if (Program.myReader == null) return;
-            Program.myReader.Read();
-
-
-            Program.username = Program.myReader.GetString(0);    
-            if (Convert.IsDBNull(Program.username))
+            else
             {
-                MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
-                return;
+                if (txtLogin.Text.Trim() == "" || txtPass.Text.Trim() == "")
+                {
+                    MessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
+                    return;
+                }
+                Program.mlogin = txtLogin.Text; Program.password = txtPass.Text;
+                if (Program.KetNoi() == 0) return;
+
+                Program.mCoSo = cmbCS.SelectedIndex;
+
+                Program.mloginDN = Program.mlogin;
+                Program.passwordDN = Program.password;
+                string strLenh = "EXEC SP_DANGNHAP '" + Program.mlogin + "'";
+
+                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                if (Program.myReader == null) return;
+                Program.myReader.Read();
+
+
+                Program.username = Program.myReader.GetString(0);
+                if (Convert.IsDBNull(Program.username))
+                {
+                    MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
+                    return;
+                }
+                Program.mHoten = Program.myReader.GetString(1);
+                Program.mGroup = Program.myReader.GetString(2);
+                Program.myReader.Close();
+                Program.conn.Close();
             }
-            Program.mHoten = Program.myReader.GetString(1);
-            Program.mGroup = Program.myReader.GetString(2);
-            Program.myReader.Close();
-            Program.conn.Close();
-            
             MessageBox.Show("Đăng nhập thành công!", "", MessageBoxButtons.OK);
             
             Program.formChinh = new formMain();
@@ -91,6 +122,24 @@ namespace THITRACNGHIEM
         private void btnThoat_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void rdGV_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdGV.Checked == true)
+            {
+                txtPass.Enabled = true;
+            }
+        }
+
+        private void rdSV_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rdSV.Checked == true)
+            {
+                txtPass.Clear();
+                txtPass.Enabled = false;
+                
+            }
         }
     }
 }

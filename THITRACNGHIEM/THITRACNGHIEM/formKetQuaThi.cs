@@ -35,7 +35,7 @@ namespace THITRACNGHIEM
             if (Program.mGroup == "SINHVIEN")
             {
                 txtSinhVien.Text = Program.mHoten;
-                string strLenh = "EXEC SP_LAYLOP '" + Program.mlogin + "'";
+                string strLenh = "EXEC SP_LAYLOP '" + Program.username + "'";
 
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
                 if (Program.myReader == null) return;
@@ -52,7 +52,7 @@ namespace THITRACNGHIEM
             if (Program.mGroup == "SINHVIEN")
             {
                 string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTDATHI '" + Program.mlogin + "', N'" + cmbMonHoc.SelectedValue.ToString() + "', '" + cmbLan.Text + "' " +
+                            "EXEC @result = SP_KTDATHI '" + Program.username + "', N'" + cmbMonHoc.SelectedValue.ToString() + "', '" + cmbLan.Text + "' " +
                             " SELECT 'result' = @result";
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
                 if (Program.myReader == null) return false;
@@ -69,7 +69,7 @@ namespace THITRACNGHIEM
         }
         private DateTime NgayThi()
         {
-            string strLenh = "EXEC SP_LAYNGAY '" + Program.mlogin + "', N'"+ cmbMonHoc.SelectedValue.ToString() + "', " + cmbLan.Text;
+            string strLenh = "EXEC SP_LAYNGAY '" + Program.username + "', N'"+ cmbMonHoc.SelectedValue.ToString() + "', " + cmbLan.Text;
 
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             Program.myReader.Read();
@@ -89,7 +89,7 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn chưa làm bài thi này!", "", MessageBoxButtons.OK);
                 return;
             }
-            rptKetQua rpt = new rptKetQua(Program.mlogin, cmbMonHoc.SelectedValue.ToString(), Int16.Parse(cmbLan.Text));
+            rptKetQua rpt = new rptKetQua(Program.username, cmbMonHoc.SelectedValue.ToString(), Int16.Parse(cmbLan.Text));
             rpt.xrlLop.Text = lop;
             rpt.xrlMonThi.Text = cmbMonHoc.Text.ToString();
             rpt.xrlNgayThi.Text = NgayThi().ToString("dd/MM/yyyy");

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace THITRACNGHIEM
 {
@@ -213,50 +215,7 @@ namespace THITRACNGHIEM
             timerTHI.Start();
         }
         private int maCTBT;
-        private void saveDataBangDiem()
-        {
-            DS.EnforceConstraints = false;
-            maCTBT = maxCTBT() + 1;
-            bdsBangDiem.AddNew();
-            DS.BANGDIEMRow bt = (DS.BANGDIEMRow)((DataRowView)bdsBangDiem[bdsBangDiem.Position]).Row;
-            bt.MASV = Program.mlogin;
-            bt.MAMH = maMH;
-            bt.LAN = short.Parse(lan.ToString());
-            bt.NGAYTHI = DateTime.Parse(ngayThi);
-            bt.DIEM = Diem;
-            bt.MABT = maCTBT;
-            bdsBangDiem.EndEdit();
-            bdsBangDiem.ResetCurrentItem();
-            this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.bANGDIEMTableAdapter.Update(DS.BANGDIEM);
-        }
-        private void saveDataCTBT()
-        {
-            DS.EnforceConstraints = false;
-            for (int i = 0; i < dgvDETHI.Rows.Count; i++)
-            {
-                bdsCTBD.AddNew();
-                DS.CT_BANGDIEMRow ct = (DS.CT_BANGDIEMRow)((DataRowView)bdsCTBD[bdsCTBD.Position]).Row;
-                ct.MABT = maCTBT;
-                ct.CAUHOI = int.Parse(dgvDETHI.Rows[i].Cells[0].Value.ToString());
-                ct.NOIDUNG = dgvDETHI.Rows[i].Cells[1].Value.ToString();
-                ct.A = dgvDETHI.Rows[i].Cells[2].Value.ToString();
-                ct.B = dgvDETHI.Rows[i].Cells[3].Value.ToString();
-                ct.C = dgvDETHI.Rows[i].Cells[4].Value.ToString();
-                ct.D = dgvDETHI.Rows[i].Cells[5].Value.ToString();
-                ct.DAP_AN = dgvDETHI.Rows[i].Cells[6].Value.ToString();
-                if (dgvDETHI.Rows[i].Cells["dachon"].Value != null)
-                {
-                    ct.DACHON = dgvDETHI.Rows[i].Cells["dachon"].Value.ToString();
-                }
-                else
-                    ct.DACHON = "";
-                bdsCTBD.EndEdit();
-                bdsCTBD.ResetCurrentItem();
-            }
-            this.cT_BANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.cT_BANGDIEMTableAdapter.Update(DS.CT_BANGDIEM);
-        }
+
         private void nopbai()
         {
             int c = CauDung();
@@ -264,8 +223,58 @@ namespace THITRACNGHIEM
             Console.WriteLine(Diem);
             if(Program.mGroup == "SINHVIEN")
             {
-                saveDataBangDiem();
-                saveDataCTBT();
+                Program.conn.Close();
+                Program.conn = new SqlConnection(Program.connstr);
+                Program.conn.Open();
+
+                SqlTransaction tran = Program.conn.BeginTransaction();
+
+                SqlCommand myCommand = Program.conn.CreateCommand();
+                myCommand.Transaction = tran;
+                try
+                {
+                    myCommand.CommandText = "INSERT INTO BANGDIEM (MASV, MAMH, LAN, NGAYTHI, DIEM) VALUES ('"
+                        + Program.username + "', N'" + maMH + "', " + lan + ", N'" + DateTime.Parse(ngayThi).ToString("yyyy-MM-dd") + "', " + Diem + ")";
+
+                    myCommand.ExecuteNonQuery();
+                    myCommand.CommandText = "SELECT MABT FROM BANGDIEM WHERE MASV = '" + Program.username + "' AND MAMH = N'" + maMH + "' AND LAN = " + lan;
+                    SqlDataReader myreader = myCommand.ExecuteReader();
+                    myreader.Read();
+                    maCTBT = myreader.GetInt32(0);
+                    myreader.Close();
+
+                    string DACHON;
+                    for (int i = 0; i < dgvDETHI.Rows.Count; i++)
+                    {
+                        if (dgvDETHI.Rows[i].Cells["dachon"].Value != null)
+                        {
+                            DACHON = dgvDETHI.Rows[i].Cells["dachon"].Value.ToString();
+                        }
+                        else
+                            DACHON = "";
+                        myCommand.CommandText = "INSERT INTO CT_BANGDIEM (MABT, CAUHOI, NOIDUNG, A, B, C, D, DAP_AN, DACHON) " +
+                                                "VALUES (" + maCTBT + ", " + dgvDETHI.Rows[i].Cells[0].Value + ", N'" +
+                                                dgvDETHI.Rows[i].Cells[1].Value.ToString() + "', N'" +
+                                                dgvDETHI.Rows[i].Cells[2].Value.ToString() + "', N'" +
+                                                dgvDETHI.Rows[i].Cells[3].Value.ToString() + "', N'" +
+                                                dgvDETHI.Rows[i].Cells[4].Value.ToString() + "', N'" +
+                                                dgvDETHI.Rows[i].Cells[5].Value.ToString() + "', N'" +
+                                                dgvDETHI.Rows[i].Cells[6].Value.ToString() + "', N'" +
+                                                DACHON + "')";
+                        myCommand.ExecuteNonQuery();
+                    }
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lưu kết quả thất bại!\n" + ex.Message, "", MessageBoxButtons.OK);
+                    tran.Rollback();
+                }
+                finally
+                {
+                    Program.conn.Close();
+                }
+
             }
             MessageBox.Show("ĐIỂM THI: " + Diem +
                 "\nSố câu đúng: " + c + "/" + soCau, "", MessageBoxButtons.OK);
@@ -300,15 +309,7 @@ namespace THITRACNGHIEM
             else
                 return;
         }
-        private int maxCTBT()
-        {
-            string strsql = "EXEC SP_MAXCTBT";
-            Program.myReader = Program.ExecSqlDataReader(strsql);
-            Program.myReader.Read();
-            int num = Program.myReader.GetInt32(0);
-            Program.myReader.Close();
-            return num;
-        }
+
 
     }
 }

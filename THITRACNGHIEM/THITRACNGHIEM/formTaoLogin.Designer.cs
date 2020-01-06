@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdSV = new System.Windows.Forms.RadioButton();
             this.rdGV = new System.Windows.Forms.RadioButton();
             this.rdCoSo = new System.Windows.Forms.RadioButton();
             this.rdTruong = new System.Windows.Forms.RadioButton();
@@ -58,7 +57,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rdSV);
             this.groupBox1.Controls.Add(this.rdGV);
             this.groupBox1.Controls.Add(this.rdCoSo);
             this.groupBox1.Controls.Add(this.rdTruong);
@@ -68,18 +66,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "QUYỀN";
-            // 
-            // rdSV
-            // 
-            this.rdSV.AutoSize = true;
-            this.rdSV.Location = new System.Drawing.Point(114, 111);
-            this.rdSV.Name = "rdSV";
-            this.rdSV.Size = new System.Drawing.Size(105, 23);
-            this.rdSV.TabIndex = 3;
-            this.rdSV.TabStop = true;
-            this.rdSV.Text = "SINH VIÊN";
-            this.rdSV.UseVisualStyleBackColor = true;
-            this.rdSV.CheckedChanged += new System.EventHandler(this.rdSV_CheckedChanged);
             // 
             // rdGV
             // 
@@ -213,7 +199,7 @@
             this.cmbUsername.Name = "cmbUsername";
             this.cmbUsername.Size = new System.Drawing.Size(369, 27);
             this.cmbUsername.TabIndex = 8;
-            this.cmbUsername.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+ 
             // 
             // btnTao
             // 
@@ -280,7 +266,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rdSV;
         private System.Windows.Forms.RadioButton rdGV;
         private System.Windows.Forms.RadioButton rdCoSo;
         private System.Windows.Forms.RadioButton rdTruong;

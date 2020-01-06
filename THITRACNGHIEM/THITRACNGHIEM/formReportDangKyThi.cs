@@ -21,7 +21,7 @@ namespace THITRACNGHIEM
         private void btnIn_Click(object sender, EventArgs e)
         {
             rptDSDKTHI rpt = new rptDSDKTHI(dateFrom.Value.ToString("dd/MM/yyyy"), dateTo.Value.ToString("dd/MM/yyyy"));
-            rpt.lbTitle.Text = "DANH SÁCH ĐĂNG KÝ THI TRẮC NGHIỆM TỪ NGÀY " + dateFrom.Value.ToString("dd/MM/yyyy") +
+            rpt.lbNgay.Text = "TỪ NGÀY " + dateFrom.Value.ToString("dd/MM/yyyy") +
                 " ĐẾN NGÀY " + dateTo.Value.ToString("dd/MM/yyyy");
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();

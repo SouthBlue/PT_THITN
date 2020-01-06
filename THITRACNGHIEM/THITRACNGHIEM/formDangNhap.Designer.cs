@@ -37,11 +37,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCS = new System.Windows.Forms.ComboBox();
+            this.rdGV = new System.Windows.Forms.RadioButton();
+            this.rdSV = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.rdSV);
+            this.groupBox1.Controls.Add(this.rdGV);
             this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.btnDangNhap);
             this.groupBox1.Controls.Add(this.txtPass);
@@ -59,7 +63,7 @@
             // btnThoat
             // 
             this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnThoat.Location = new System.Drawing.Point(365, 226);
+            this.btnThoat.Location = new System.Drawing.Point(365, 242);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(107, 35);
             this.btnThoat.TabIndex = 7;
@@ -69,7 +73,7 @@
             // 
             // btnDangNhap
             // 
-            this.btnDangNhap.Location = new System.Drawing.Point(181, 226);
+            this.btnDangNhap.Location = new System.Drawing.Point(182, 242);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(107, 35);
             this.btnDangNhap.TabIndex = 6;
@@ -79,7 +83,7 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(181, 175);
+            this.txtPass.Location = new System.Drawing.Point(181, 189);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(291, 26);
@@ -87,7 +91,7 @@
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(181, 112);
+            this.txtLogin.Location = new System.Drawing.Point(181, 125);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(291, 26);
             this.txtLogin.TabIndex = 4;
@@ -95,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 178);
+            this.label3.Location = new System.Drawing.Point(69, 192);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 19);
             this.label3.TabIndex = 3;
@@ -104,7 +108,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 115);
+            this.label2.Location = new System.Drawing.Point(69, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 19);
             this.label2.TabIndex = 2;
@@ -113,7 +117,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 53);
+            this.label1.Location = new System.Drawing.Point(69, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 19);
             this.label1.TabIndex = 1;
@@ -123,11 +127,35 @@
             // 
             this.cmbCS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCS.FormattingEnabled = true;
-            this.cmbCS.Location = new System.Drawing.Point(181, 50);
+            this.cmbCS.Location = new System.Drawing.Point(181, 34);
             this.cmbCS.Name = "cmbCS";
-            this.cmbCS.Size = new System.Drawing.Size(220, 27);
+            this.cmbCS.Size = new System.Drawing.Size(291, 27);
             this.cmbCS.TabIndex = 0;
             this.cmbCS.SelectedIndexChanged += new System.EventHandler(this.cmbCS_SelectedIndexChanged);
+            // 
+            // rdGV
+            // 
+            this.rdGV.AutoSize = true;
+            this.rdGV.Location = new System.Drawing.Point(205, 83);
+            this.rdGV.Name = "rdGV";
+            this.rdGV.Size = new System.Drawing.Size(84, 23);
+            this.rdGV.TabIndex = 8;
+            this.rdGV.TabStop = true;
+            this.rdGV.Text = "Giáo viên";
+            this.rdGV.UseVisualStyleBackColor = true;
+            this.rdGV.CheckedChanged += new System.EventHandler(this.rdGV_CheckedChanged);
+            // 
+            // rdSV
+            // 
+            this.rdSV.AutoSize = true;
+            this.rdSV.Location = new System.Drawing.Point(365, 83);
+            this.rdSV.Name = "rdSV";
+            this.rdSV.Size = new System.Drawing.Size(81, 23);
+            this.rdSV.TabIndex = 9;
+            this.rdSV.TabStop = true;
+            this.rdSV.Text = "Sinh viên";
+            this.rdSV.UseVisualStyleBackColor = true;
+            this.rdSV.CheckedChanged += new System.EventHandler(this.rdSV_CheckedChanged);
             // 
             // formDangNhap
             // 
@@ -160,5 +188,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCS;
+        private System.Windows.Forms.RadioButton rdSV;
+        private System.Windows.Forms.RadioButton rdGV;
     }
 }

@@ -37,7 +37,7 @@ namespace THITRACNGHIEM
 
             if (Program.mGroup == "TRUONG")
             {
-                rdCoSo.Enabled = rdGV.Enabled = rdSV.Enabled = false;
+                rdCoSo.Enabled = rdGV.Enabled  = false;
             }
             if(Program.mGroup == "COSO")
             {
@@ -45,7 +45,7 @@ namespace THITRACNGHIEM
             }
             if (Program.mGroup == "GIANGVIEN")
             {
-                rdCoSo.Enabled = rdTruong.Enabled = rdSV.Enabled = false;
+                rdCoSo.Enabled = rdTruong.Enabled = false;
             }
 
         }
@@ -83,25 +83,6 @@ namespace THITRACNGHIEM
             }
         }
 
-        private void rdSV_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdSV.Checked == true)
-            {
-                cmbUsername.DataSource = bdsSinhVien;
-                cmbUsername.DisplayMember = cmbUsername.ValueMember = "MASV";
-                txtLoginName.Text = cmbUsername.SelectedValue.ToString();
-                txtLoginName.ReadOnly = true;
-            }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(rdSV.Checked == true)
-            {
-                txtLoginName.Text = cmbUsername.SelectedValue.ToString();
-            }
-            
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -115,7 +96,6 @@ namespace THITRACNGHIEM
             if (rdTruong.Checked == true) str = "TRUONG";
             if (rdCoSo.Checked == true) str = "COSO";
             if (rdGV.Checked == true) str = "GIANGVIEN";
-            if (rdSV.Checked == true) str = "SINHVIEN";
             return str;
         }
         private void button1_Click(object sender, EventArgs e)

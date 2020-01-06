@@ -15,12 +15,12 @@ namespace THITRACNGHIEM
         {
             
             InitializeComponent();
-            if (Program.mGroup.CompareTo("SINHVIEN") == 0)
+/*            if (Program.mGroup.CompareTo("SINHVIEN") == 0)
             {
                 MA.Text = "Mã: " + Program.mlogin;
                 HOTEN.Text = "Họ và Tên: " + Program.mHoten;
-            }
-            else
+            }*/
+            if(Program.mGroup != "SINHVIEN")
             {
                 MA.Text = "Mã: " + Program.username;
                 HOTEN.Text = "Họ và Tên: " + Program.mHoten;

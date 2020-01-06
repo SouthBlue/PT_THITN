@@ -35,7 +35,7 @@ namespace THITRACNGHIEM
             if(Program.mGroup == "SINHVIEN")
             {
                 txtHoTen.Text = Program.mHoten;
-                string strLenh = "EXEC SP_LAYLOP '" + Program.mlogin + "'";
+                string strLenh = "EXEC SP_LAYLOP '" + Program.username + "'";
 
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
                 if (Program.myReader == null) return;
@@ -51,7 +51,7 @@ namespace THITRACNGHIEM
             if (Program.mGroup == "SINHVIEN")
             {
                 string strLenh = "DECLARE @result int " +
-                            "EXEC @result = SP_KTDATHI '" + Program.mlogin +"', N'" + cmbMH.SelectedValue.ToString() + "', '" + seLanThi.Value + "' " +
+                            "EXEC @result = SP_KTDATHI '" + Program.username +"', N'" + cmbMH.SelectedValue.ToString() + "', '" + seLanThi.Value + "' " +
                             " SELECT 'result' = @result";
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
                 if (Program.myReader == null) return false;
